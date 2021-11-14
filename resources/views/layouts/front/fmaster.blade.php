@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="@yield('description');">
-    <meta name="keywords" content="@yield('keywords');">
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
 
-    <title>@yield('title'); </title>
+    <title>@yield('title') </title>
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/front/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/front/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/front/css/medical-guide-icons.css">
