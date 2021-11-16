@@ -15,3 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\front\HomeController::class, 'index']);
 Route::get('/admin', [App\Http\Controllers\admin\HomeController::class, 'index']);
+Route::get('/admin/treatments', [App\Http\Controllers\admin\HomeController::class, 'treatments']);
+
+//treatment işlemleri
+Route::get('/admin/treatments', [App\Http\Controllers\admin\treatmentController::class, 'index']);
+Route::get('/admin/treatments/edit/{id}', [App\Http\Controllers\admin\treatmentController::class, 'edit']);
+Route::get('/admin/treatments/destroy/{id}', [App\Http\Controllers\admin\treatmentController::class, 'destroy']);
+Route::get('/admin/treatments/show/{id}', [App\Http\Controllers\admin\treatmentController::class, 'show']);
+Route::post('/admin/treatments/create', [App\Http\Controllers\admin\treatmentController::class, 'create']);
+Route::post('/admin/treatments/update/{id}', [App\Http\Controllers\admin\treatmentController::class, 'update']);
+
