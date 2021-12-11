@@ -14,7 +14,9 @@
 
             <div class="page-header">
                 <div class="page-title">
-                    <h3>Striped Table</h3>
+                    <h3>treatment Table</h3>
+                    <a href="{{url('/')}}/admin/treatments/add"  class="btn btn-outline-primary btn-rounded mb-2">اضافة منزل</a>
+
                 </div>
             </div>
 
@@ -50,10 +52,10 @@
                                 <td>{{$treatment->updated_at}}</td>
                                 <td><img src="{{url('/')}}/userfile/{{$treatment->image}}" height="30"> </td>
 
-                                <td><a href="{{url('/')}}/admin/treatment/edit{{$treatment->Id}}" class="btn btn-outline-secondary mb-2">edit</a>
+                                <td><a href="{{url('/')}}/admin/treatments/edit/{{$treatment->Id}}" class="btn btn-outline-secondary mb-2">edit</a>
 
                                 </td>
-                                <td><a href="{{url('/')}}/admin/treatment/destroy{{$treatment->Id}}" class="btn btn-outline-danger  mb-2">delete</a>
+                                <td><a href="{{url('/')}}/admin/treatments/destroy/{{$treatment->Id}}" class="btn btn-outline-danger  mb-2">delete</a>
                                 </td>
 
                             </tr>

@@ -15,11 +15,20 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="{{url('/')}}/assets/admin/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{url('/')}}/assets/admin/plugins/editors/markdown/simplemde.min.css">
+    <link href="{{url('/')}}/assets/admin/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/assets/admin/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/admin/plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/admin/plugins/table/datatable/dt-global_style.css">
     <!-- END PAGE LEVEL STYLES -->
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/admin/assets/css/elements/alert.css">
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
+    <!--  END CUSTOM STYLE FILE  -->
 </head>
 <body class="alt-menu sidebar-noneoverflow">
 
@@ -93,6 +102,7 @@
 </div>
 <!-- END MAIN CONTAINER -->
 
+
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
 <script src="{{url('/')}}/assets/admin/assets/js/libs/jquery-3.1.1.min.js"></script>
 <script src="{{url('/')}}/assets/admin/bootstrap/js/popper.min.js"></script>
@@ -107,8 +117,13 @@
 </script>
 <script src="{{url('/')}}/assets/admin/assets/js/custom.js"></script>
 
-<script src="{{url('/')}}/assets/admin/assets/js/custom.js"></script>
-<!-- END GLOBAL MANDATORY SCRIPTS -->
+<script src="{{url('/')}}/assets/admin/plugins/highlight/highlight.pack.js"></script>
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{url('/')}}/assets/admin/assets/js/scrollspyNav.js"></script>
+<script src="{{url('/')}}/assets/admin/plugins/editors/markdown/simplemde.min.js"></script>
+<script src="{{url('/')}}/assets/admin/plugins/editors/markdown/custom-markdown.js"></script>
+<!-- END PAGE LEVEL SCRIPTS --><!-- END GLOBAL MANDATORY SCRIPTS -->
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{url('/')}}/assets/admin/plugins/table/datatable/datatables.js"></script>

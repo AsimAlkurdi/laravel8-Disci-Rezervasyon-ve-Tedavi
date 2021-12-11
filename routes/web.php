@@ -24,4 +24,5 @@ Route::get('/admin/treatments/destroy/{id}', [App\Http\Controllers\admin\treatme
 Route::get('/admin/treatments/show/{id}', [App\Http\Controllers\admin\treatmentController::class, 'show']);
 Route::post('/admin/treatments/create', [App\Http\Controllers\admin\treatmentController::class, 'create']);
 Route::post('/admin/treatments/update/{id}', [App\Http\Controllers\admin\treatmentController::class, 'update']);
+Route::get('/admin/treatments/add', [App\Http\Controllers\admin\treatmentController::class, 'create']);
 

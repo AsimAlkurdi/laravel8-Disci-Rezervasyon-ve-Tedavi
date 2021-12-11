@@ -15,7 +15,10 @@ class treatmentController extends Controller
      */
     public function index()
     {
-        $sql='select * from treatment ORDER BY ID';
+        $sql='select h.*, c.title as category
+              from treatment h, category c
+              where h.categoryid = c.id
+              ORDER BY h.title';
         $treatment = DB::select ($sql);
         return view("admin.treatment",["treatment"=>$treatment]);
     }
@@ -27,7 +30,9 @@ class treatmentController extends Controller
      */
     public function create()
     {
-        //
+        $category = DB::select ('select * FROM category ORDER BY title');
+
+        return view("admin.treatmentadd",["category"=>$category]);
     }
 
     /**
@@ -38,7 +43,28 @@ class treatmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/userfile/', $name);
+        }
+
+
+        DB::table('treatment')->insert([
+            [ 'title' => $request->get('title'),
+                'keywords' => $request->get('keywords'),
+                'description' => $request->get('description'),
+                'detail' => $request->get('detail'),
+                'categoryid' => $request->get('categoryid'),
+                'status' => $request->get('status'),
+                'price' => $request->get('price'),
+                'image' => $name
+            ]
+        ]);
+
+
+        return redirect('admin/treatments')->with('success', 'dogru');
     }
 
     /**
@@ -60,7 +86,14 @@ class treatmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = DB::select ('select * FROM category ORDER BY title');
+
+        //$data = DB::select ('select * FROM homes WHERE Id=?',[$id]);
+        $data=DB::select ('select h.*, c.title as category
+              from treatment h, category c
+              where h.categoryid = c.id AND h.Id=?',[$id]);
+        // $data = DB::select ($sql,[$id]);
+        return view("admin.treatmentedit",compact('data','category'));
     }
 
     /**
@@ -72,7 +105,32 @@ class treatmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/userfile/', $name);
+        }
+        else{
+            $name=$request->image2;
+        }
+
+        DB::table('treatment')
+            ->where('id',$id)
+            ->update([
+                'title' => $request->title,
+                'keywords' => $request->keywords,
+                'description' => $request->description,
+                'detail' => $request->detail,
+                'categoryid' => $request->categoryid,
+                'status' => $request->status,
+                'price' => $request->price,
+                'image' => $name
+
+            ]);
+
+
+        return redirect('admin/treatments')->with('success', 'تم تحديث المعلومات بنجاح');
     }
 
     /**
@@ -83,6 +141,7 @@ class treatmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::select ('DELETE FROM treatment WHERE Id=?',[$id]);
+        return redirect('admin/treatments')->with('success', 'تم الحذف  بنجاح');
     }
 }
