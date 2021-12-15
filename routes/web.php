@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\front\HomeController::class, 'index']);
-Route::get('/admin', [App\Http\Controllers\admin\HomeController::class, 'index']);
+Route::get('/admin', [App\Http\Controllers\admin\HomeController::class, 'index'])->name('admin')->middleware('auth');
 Route::get('/admin/treatments', [App\Http\Controllers\admin\HomeController::class, 'treatments']);
+Route::get('/admin/login', [App\Http\Controllers\HomeController::class, 'login'])->name('admin_login');
+Route::post('/admin/logincheck', [App\Http\Controllers\HomeController::class, 'logincheck'])->name('admin_logincheck');
+Route::get('/admin/logout', [App\Http\Controllers\HomeController::class, 'logincheck'])->name('admin_logout');
 
 //treatment işlemleri
 Route::get('/admin/treatments', [App\Http\Controllers\admin\treatmentController::class, 'index']);
@@ -26,3 +29,8 @@ Route::post('/admin/treatments/create', [App\Http\Controllers\admin\treatmentCon
 Route::post('/admin/treatments/update/{id}', [App\Http\Controllers\admin\treatmentController::class, 'update']);
 Route::get('/admin/treatments/add', [App\Http\Controllers\admin\treatmentController::class, 'create']);
 
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
