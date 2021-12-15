@@ -1,7 +1,7 @@
 @extends('layouts.admin.amaster')
 
 
-@section('title'.'add home page')
+@section('title'.'edit category page')
 @section('keywords'.'')
 
 
@@ -13,58 +13,35 @@
 
         <div class="page-header">
             <div class="page-title">
-                    <h3>add new treatment</h3>
+                    <h3>update category</h3>
             </div>
         </div>
 
 
-<form action="{{url('/')}}/admin/treatments/create" method="post" enctype="multipart/form-data">
+<form action="{{url('/')}}/admin/category/update/{{$category[0]->Id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">title</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="text" name="title" class="form-control"  placeholder="">
+            <input type="text" name="title" value="{{$category[0]->title}}"class="form-control"  placeholder="">
         </div>
     </div>
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">keywords</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="text" name="keywords" class="form-control"  placeholder="">
+            <input type="text" name="keywords" value="{{$category[0]->keywords}}" class="form-control"  placeholder="">
         </div>
     </div>
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">description</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <div id="autosaving" class="row layout-spacing">
-                <div class="col-lg-12">
-                    <div class="statbox widget box box-shadow">
-
-                        <div class="widget-content widget-content-area">
-
-                                <textarea id="demo2" name="description">
-
-
-                                </textarea>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">detail</label>
-        <div class="col-xl-10 col-lg-9 col-sm-10">
-
             <div id="basic" class="row layout-spacing  layout-top-spacing">
                 <div class="col-lg-12">
                     <div class="statbox widget box box-shadow">
 
                         <div class="widget-content widget-content-area">
-                                    <textarea id="demo1" name="detail">
-
+                                     <textarea value="{{$category[0]->description}}" id="demo1" name="detail">
+{{$category[0]->description}}
                                     </textarea>
 
 
@@ -77,18 +54,15 @@
 
 
         <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">price</label>
+        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">usd_id</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="number" name="price" class="form-control"  placeholder="">
-        </div>
-    </div>
-
-        <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">categoryid</label>
-        <div class="col-xl-10 col-lg-9 col-sm-10">
-            <select   name="categoryid" class="placeholder js-states form-control">
-                <option>اختار...</option>
-                @foreach($category as $ca)
+            <select   name="usd_id" class="placeholder js-states form-control">
+                @if($category[0]->usd_id ==0)
+                    <option value="0" >لا ينتمي لفئه اخرى</option>
+                @else
+                    <option value="{{$category[0]->usd_id}}" >{{$category[0]->categoryusd}}</option>
+                @endif
+                @foreach($data as $ca)
                 <option value="{{$ca->Id}}">{{$ca->title}}</option>
                 @endforeach
             </select>
@@ -100,8 +74,8 @@
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">status</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
-                <option>select...</option>
-                <option value="1">1</option>
+                <option  >{{$category[0]->status}}</option>
+                <option value="1"> 1</option>
                 <option value="0">0</option>
 
             </select>
@@ -109,18 +83,17 @@
     </div>
 
 
-
     <div class="form-group row mb-4">
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">image</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-
-        <input type="file" name="image" class="form-control">
+            <input type="hidden" name="image2" value="{{$category[0]->image}}"  class="form-control">
+        <input type="file" name="image"  class="form-control">
    </div>
    </div>
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary mt-3">save</button>
+            <button type="submit" class="btn btn-primary mt-3">حفظ</button>
         </div>
     </div>`
 </form>

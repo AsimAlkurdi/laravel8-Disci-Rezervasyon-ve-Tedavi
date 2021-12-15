@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class treatmentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,13 @@ class treatmentController extends Controller
      */
     public function index()
     {
-        $sql='select h.*, c.title as category
-              from treatment h, category c
-              where h.categoryid = c.id
-              ORDER BY h.title';
-        $treatment = DB::select ($sql);
-        return view("admin.treatment",["treatment"=>$treatment]);
+        $sql='select c.*, b.title as categoryusd
+              from category c left join category b
+               on c.usd_id = b.id
+              ORDER BY c.title';
+
+        $category = DB::select ($sql);
+        return view("admin.category",["category"=>$category]);
     }
 
     /**
@@ -32,7 +33,8 @@ class treatmentController extends Controller
     {
         $category = DB::select ('select * FROM category ORDER BY title');
 
-        return view("admin.treatmentadd",["category"=>$category]);
+        return view("admin.categoryadd",["category"=>$category]);
+
     }
 
     /**
@@ -51,20 +53,18 @@ class treatmentController extends Controller
         }
 
 
-        DB::table('treatment')->insert([
+        DB::table('category')->insert([
             [ 'title' => $request->get('title'),
                 'keywords' => $request->get('keywords'),
                 'description' => $request->get('description'),
-                'detail' => $request->get('detail'),
-                'categoryid' => $request->get('categoryid'),
+                'usd_id' => $request->get('usd_id'),
                 'status' => $request->get('status'),
-                'price' => $request->get('price'),
                 'image' => $name
             ]
         ]);
 
 
-        return redirect('admin/treatments')->with('success', 'added new treatment successfully');
+        return redirect('admin/category')->with('success', 'added new category successfully');
     }
 
     /**
@@ -86,14 +86,14 @@ class treatmentController extends Controller
      */
     public function edit($id)
     {
-        $category = DB::select ('select * FROM category ORDER BY title');
 
-        //$data = DB::select ('select * FROM homes WHERE Id=?',[$id]);
-        $data=DB::select ('select h.*, c.title as category
-              from treatment h, category c
-              where h.categoryid = c.id AND h.Id=?',[$id]);
-        // $data = DB::select ($sql,[$id]);
-        return view("admin.treatmentedit",compact('data','category'));
+        $category = DB::select ('select c.*, b.title as categoryusd
+              from category c left join category b
+               on c.usd_id = b.id
+              where c.Id=?',[$id]);
+        $data= DB::select ('select * FROM category ORDER BY title');
+        return view("admin.categoryedit",compact('data','category'));
+
     }
 
     /**
@@ -115,22 +115,20 @@ class treatmentController extends Controller
             $name=$request->image2;
         }
 
-        DB::table('treatment')
+        DB::table('category')
             ->where('id',$id)
             ->update([
                 'title' => $request->title,
                 'keywords' => $request->keywords,
                 'description' => $request->description,
-                'detail' => $request->detail,
-                'categoryid' => $request->categoryid,
+                'usd_id' => $request->usd_id,
                 'status' => $request->status,
-                'price' => $request->price,
                 'image' => $name
 
             ]);
 
 
-        return redirect('admin/treatments')->with('success', 'updated successfully');
+        return redirect('admin/category')->with('success', 'updated category successfully');
     }
 
     /**
@@ -141,7 +139,7 @@ class treatmentController extends Controller
      */
     public function destroy($id)
     {
-        DB::select ('DELETE FROM treatment WHERE Id=?',[$id]);
-        return redirect('admin/treatments')->with('success', 'deleted successfully');
+        DB::select ('DELETE FROM category WHERE Id=?',[$id]);
+        return redirect('admin/category')->with('success', 'deleted successfully');
     }
 }

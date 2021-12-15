@@ -104,6 +104,7 @@
 <!-- END MAIN CONTAINER -->
 
 
+
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
 <script src="{{url('/')}}/assets/admin/assets/js/libs/jquery-3.1.1.min.js"></script>
 <script src="{{url('/')}}/assets/admin/bootstrap/js/popper.min.js"></script>

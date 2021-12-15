@@ -13,12 +13,12 @@
 
         <div class="page-header">
             <div class="page-title">
-                    <h3>add new treatment</h3>
+                    <h3>add new category</h3>
             </div>
         </div>
 
 
-<form action="{{url('/')}}/admin/treatments/create" method="post" enctype="multipart/form-data">
+<form action="{{url('/')}}/admin/category/create" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">title</label>
@@ -33,60 +33,31 @@
         </div>
     </div>
     <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">description</label>
-        <div class="col-xl-10 col-lg-9 col-sm-10">
-            <div id="autosaving" class="row layout-spacing">
-                <div class="col-lg-12">
-                    <div class="statbox widget box box-shadow">
-
-                        <div class="widget-content widget-content-area">
-
-                                <textarea id="demo2" name="description">
-
-
-                                </textarea>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">detail</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
+                <div id="basic" class="row layout-spacing  layout-top-spacing">
+                    <div class="col-lg-12">
+                        <div class="statbox widget box box-shadow">
 
-            <div id="basic" class="row layout-spacing  layout-top-spacing">
-                <div class="col-lg-12">
-                    <div class="statbox widget box box-shadow">
-
-                        <div class="widget-content widget-content-area">
+                            <div class="widget-content widget-content-area">
                                     <textarea id="demo1" name="detail">
 
                                     </textarea>
 
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
 
 
-        <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">price</label>
+    <div class="form-group row mb-4">
+        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">   usd_id</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="number" name="price" class="form-control"  placeholder="">
-        </div>
-    </div>
-
-        <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">categoryid</label>
-        <div class="col-xl-10 col-lg-9 col-sm-10">
-            <select   name="categoryid" class="placeholder js-states form-control">
+            <select   name="usd_id" class="placeholder js-states form-control">
                 <option>اختار...</option>
                 @foreach($category as $ca)
                 <option value="{{$ca->Id}}">{{$ca->title}}</option>
@@ -100,8 +71,8 @@
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">status</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
-                <option>select...</option>
-                <option value="1">1</option>
+                <option>اختار...</option>
+                <option value="1"> 1</option>
                 <option value="0">0</option>
 
             </select>
@@ -111,7 +82,7 @@
 
 
     <div class="form-group row mb-4">
-        <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">image</label>
+        <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">image </label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
 
         <input type="file" name="image" class="form-control">
