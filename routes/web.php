@@ -38,6 +38,14 @@ Route::post('category/create', [App\Http\Controllers\admin\CategoryController::c
 Route::get('category/add', [App\Http\Controllers\admin\CategoryController::class, 'create']);
 Route::post('category/update/{id}', [App\Http\Controllers\admin\CategoryController::class, 'update']);
 
+
+//images işlemleri
+    Route::prefix('image')->group(function (){
+Route::get('delete/{id}', [App\Http\Controllers\admin\ImageController::class, 'destroy'])->name('admin_image_delete');
+Route::get('show', [App\Http\Controllers\admin\ImageController::class, 'show'])->name('admin_image_show');
+Route::post('store', [App\Http\Controllers\admin\ImageController::class, 'store'])->name('admin_image_store');
+Route::get('create/{id}', [App\Http\Controllers\admin\ImageController::class, 'create'])->name('admin_image_add');
+    });
 });
 
 Route::get('/admin/login', [App\Http\Controllers\HomeController::class, 'login'])->name('admin_login');

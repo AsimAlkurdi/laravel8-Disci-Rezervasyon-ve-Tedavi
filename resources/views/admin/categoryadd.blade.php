@@ -1,7 +1,7 @@
 @extends('layouts.admin.amaster')
 
 
-@section('title'.'add home page')
+@section('title'.'add category page')
 @section('keywords'.'')
 
 
