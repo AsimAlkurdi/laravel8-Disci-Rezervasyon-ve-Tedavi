@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class treatmentController extends Controller
@@ -57,6 +58,7 @@ class treatmentController extends Controller
                 'description' => $request->get('description'),
                 'detail' => $request->get('detail'),
                 'categoryid' => $request->get('categoryid'),
+                'usersid' => Auth::id(),
                 'status' => $request->get('status'),
                 'price' => $request->get('price'),
                 'image' => $name

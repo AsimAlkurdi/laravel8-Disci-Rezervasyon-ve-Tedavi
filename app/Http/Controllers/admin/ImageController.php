@@ -23,10 +23,11 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($treatment_id)
     {
-        $data = DB::select ('select * FROM treatment where Id=?',[$id]);
-        return view("admin.imageadd",["data"=>$data]);
+        $data = DB::select ('select * FROM treatment where Id=?',[$treatment_id]);
+        $image = DB::select ('select * FROM images where treatment_id=?',[$treatment_id]);
+        return view("admin.imageadd",["data"=>$data],["image"=>$image]);
     }
 
     /**
@@ -35,9 +36,23 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$treatment_id)
     {
-        //
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/userfile/', $name);
+        }
+
+
+        DB::table('images')->insert([
+            [ 'title' => $request->input('title'),
+                'treatment_id' => $treatment_id ,
+                'image' => $name
+            ]
+        ]);
+         return redirect()->route('admin_image_add',['treatment_id'=>$treatment_id]);
     }
 
     /**

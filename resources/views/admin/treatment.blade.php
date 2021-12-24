@@ -40,6 +40,7 @@
                                 <th>created_at</th>
                                 <th>updated_at</th>
                                 <th>image</th>
+                                <th>image gallery</th>
                                 <th>edit</th>
                                 <th>delete</th>
                             </tr>
@@ -55,6 +56,7 @@
                                 <td>{{$treatment->created_at}}</td>
                                 <td>{{$treatment->updated_at}}</td>
                                 <td><img src="{{url('/')}}/userfile/{{$treatment->image}}" height="30"> </td>
+                                <td><a href="{{route('admin_image_add',['treatment_id'=>$treatment->Id])}}"> <img src="{{url('/')}}/userfile/2.jpg"  height="30"></a></td>
 
                                 <td><a href="{{url('/')}}/admin/treatments/edit/{{$treatment->Id}}" class="btn btn-outline-secondary mb-2">edit</a>
 

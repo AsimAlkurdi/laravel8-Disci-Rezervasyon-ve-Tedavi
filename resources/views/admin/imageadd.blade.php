@@ -40,8 +40,51 @@
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary mt-3">save</button>
         </div>
-    </div>`
+    </div>
 </form>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped mb-4">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Sale</th>
+                    <th class="text-center">Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Shaun Park</td>
+                    <td>10/08/2020</td>
+                    <td>320</td>
+                    <td class="text-center"><span class="text-success">Complete</span></td>
+                    <td class="text-center"><svg> ... </svg></td>
+                </tr>
+                <tr>
+                    <td> Alma Clarke</td>
+                    <td>11/08/2020</td>
+                    <td>420</td>
+                    <td class="text-center"><span class="text-secondary">Pending</span></td>
+                    <td class="text-center"><svg> ... </svg></td>
+                </tr>
+                <tr>
+                    <td>Xavier</td>
+                    <td>12/08/2020</td>
+                    <td>130</td>
+                    <td class="text-center"><span class="text-info">In progress</span></td>
+                    <td class="text-center"><svg> ... </svg></td>
+                </tr>
+                <tr>
+                    <td>Vincent Carpenter</td>
+                    <td>13/08/2020</td>
+                    <td>260</td>
+                    <td class="text-center"><span class="text-danger">Canceled</span></td>
+                    <td class="text-center"><svg> ... </svg></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
