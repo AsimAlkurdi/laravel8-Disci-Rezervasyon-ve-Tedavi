@@ -95,8 +95,8 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$treatment_id)
     {
-        //
-    }
+        DB::select ('DELETE FROM images WHERE Id=?',[$id]);
+        return redirect()->route('admin_image_add',['treatment_id'=>$treatment_id])->with('success', 'deleted successfully');    }
 }

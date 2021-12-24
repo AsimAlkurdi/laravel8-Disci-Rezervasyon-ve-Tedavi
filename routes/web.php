@@ -41,7 +41,7 @@ Route::post('category/update/{id}', [App\Http\Controllers\admin\CategoryControll
 
 //images işlemleri
     Route::prefix('image')->group(function (){
-Route::get('delete/{id}', [App\Http\Controllers\admin\ImageController::class, 'destroy'])->name('admin_image_delete');
+Route::get('delete/{id}/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'destroy'])->name('admin_image_delete');
 Route::get('show', [App\Http\Controllers\admin\ImageController::class, 'show'])->name('admin_image_show');
 Route::post('store/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'store'])->name('admin_image_store');
 Route::get('create/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'create'])->name('admin_image_add');

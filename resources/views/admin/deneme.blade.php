@@ -1,3 +1,5 @@
+<h3>add new image for {{$data[0]->title}}</h3>
+
 
 @extends('layouts.admin.amaster')
 
@@ -20,7 +22,7 @@
                     <div class="widget widget-chart-three">
                         <div class="widget-heading">
                             <div class="">
-                                <h5 class=""> {{$data[0]->title}} images </h5>
+                                <h5 class=""> images </h5>
                             </div>
 
                         </div>
@@ -30,28 +32,42 @@
                                 <table class="table table-bordered table-hover table-striped mb-4">
                                     <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>title</th>
-                                        <th>image</th>
-                                        <th>actions</th>
-
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Sale</th>
+                                        <th class="text-center">Status</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($image as $image)
                                     <tr>
-                                        <td>{{$image->Id}}</td>
-                                        <td>{{$image->title}}</td>
-
-                                        <td><img src="{{url('/')}}/userfile/{{$image->image}}" height="30"> </td>
-
-
-                                        </td>
-                                        <td><a href="{{route('admin_image_delete',['id'=>$image->Id,'treatment_id'=>$data[0]->Id])}}" class="btn btn-outline-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
-                                        </td>
+                                        <td>Shaun Park</td>
+                                        <td>10/08/2020</td>
+                                        <td>320</td>
+                                        <td class="text-center"><span class="text-success">Complete</span></td>
+                                        <td class="text-center"><svg> ... </svg></td>
                                     </tr>
-                                    @endforeach
-
+                                    <tr>
+                                        <td> Alma Clarke</td>
+                                        <td>11/08/2020</td>
+                                        <td>420</td>
+                                        <td class="text-center"><span class="text-secondary">Pending</span></td>
+                                        <td class="text-center"><svg> ... </svg></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Xavier</td>
+                                        <td>12/08/2020</td>
+                                        <td>130</td>
+                                        <td class="text-center"><span class="text-info">In progress</span></td>
+                                        <td class="text-center"><svg> ... </svg></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vincent Carpenter</td>
+                                        <td>13/08/2020</td>
+                                        <td>260</td>
+                                        <td class="text-center"><span class="text-danger">Canceled</span></td>
+                                        <td class="text-center"><svg> ... </svg></td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -100,4 +116,4 @@
             </div>
         </div>            </div>
 
-    @endsection
+    ,@endsection
