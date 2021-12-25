@@ -46,6 +46,13 @@ Route::get('show', [App\Http\Controllers\admin\ImageController::class, 'show'])-
 Route::post('store/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'store'])->name('admin_image_store');
 Route::get('create/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'create'])->name('admin_image_add');
     });
+
+    //setting işlemleri
+
+    Route::get('setting', [App\Http\Controllers\admin\SettingController::class, 'index'])->name('admin_setting');
+    Route::post('setting/update', [App\Http\Controllers\admin\SettingController::class, 'update'])->name('admin_setting_update');
+
+
 });
 
 Route::get('/admin/login', [App\Http\Controllers\HomeController::class, 'login'])->name('admin_login');
