@@ -12,7 +12,7 @@
     <link href="{{url('/')}}/assets/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{url('/')}}/assets/admin/assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="{{url('/')}}/assets/admin/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
@@ -29,6 +29,9 @@
         .btn-light { border-color: transparent; }
     </style>
     <!--  END CUSTOM STYLE FILE  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 <body class="alt-menu sidebar-noneoverflow">
 
@@ -146,5 +149,8 @@
         "pageLength": 7
     });
 </script>
+
+<!-- include summernote css/js -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </body>
 </html>
