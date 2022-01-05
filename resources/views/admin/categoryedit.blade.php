@@ -18,7 +18,7 @@
         </div>
 
 
-<form action="{{url('/')}}/admin/category/update/{{$category[0]->Id}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/')}}/admin/category/update/{{$category[0]->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">title</label>
@@ -58,12 +58,12 @@
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="usd_id" class="placeholder js-states form-control">
                 @if($category[0]->usd_id ==0)
-                    <option value="0" >لا ينتمي لفئه اخرى</option>
+                    <option value="0" selected="selected" >select..</option>
                 @else
                     <option value="{{$category[0]->usd_id}}" >{{$category[0]->categoryusd}}</option>
                 @endif
                 @foreach($data as $ca)
-                <option value="{{$ca->Id}}">{{$ca->title}}</option>
+                <option value="{{$ca->id}}">{{$ca->title}}</option>
                 @endforeach
             </select>
         </div>
@@ -75,8 +75,8 @@
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
                 <option  >{{$category[0]->status}}</option>
-                <option value="1"> 1</option>
-                <option value="0">0</option>
+                <option value="false"> false</option>
+                <option value="true">true</option>
 
             </select>
         </div>

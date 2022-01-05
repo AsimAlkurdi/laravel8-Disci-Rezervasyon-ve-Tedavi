@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\front\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('homepage');
+Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
+Route::get('/references', [App\Http\Controllers\HomeController::class, 'references'])->name('references');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
 
 route::middleware('auth')->prefix('admin')->group(function (){
 Route::get('/', [App\Http\Controllers\admin\HomeController::class, 'index'])->name('admin');

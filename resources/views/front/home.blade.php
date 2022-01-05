@@ -1,9 +1,9 @@
 @extends('layouts.front.fmaster')
 
 
-@section('title'.'deneme sayfa')
-@section('keywords'.'deneme keywords')
-@section('description'.'deneme description')
+@section('title',$setting->title)
+@section('keywords',$setting->keywords)
+@section('description',$setting->description)
 
 
 @section('slider')

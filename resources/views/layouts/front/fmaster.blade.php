@@ -63,14 +63,13 @@
                         <div id="fixed-collapse-navbar" class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html">Home V1</a></li>
-                                        <li><a href="index2.html">Home V2</a></li>
-                                        <li><a href="index3.html">Home V3</a></li>
+
                                     </ul>
                                 </li>
-                                <li><a href="about.html">about us</a></li>
+                                <li><a href="{{route('aboutus')}}">about us</a></li>
 
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">pages</a>
@@ -115,7 +114,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6 footer_column">
-                <h4 class="heading">Why Medix?</h4>
+                <h4 class="heading">Why {{ $setting->company}}?</h4>
                 <hr class="half_space">
                 <p class="half_space">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore dolor in hendrerit in vulputate.</p>
                 <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl.</p>
@@ -126,7 +125,7 @@
                 <ul class="widget_links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Specilaties</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="{{url('/')}}/front/aboutus">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Events</a></li>
@@ -155,21 +154,22 @@
             <div class="col-md-3 col-sm-6 footer_column">
                 <h4 class="heading">Get in Touch</h4>
                 <hr class="half_space">
-                <p>Medical Bibendum auctor, to consequat ipsum nec sagittis sem.</p>
-                <p class="address"><i class="icon-location"></i>Medical Ltd, Manhattan 1258,New York, USA Lahore</p>
-                <p class="address"><i class="fa fa-phone"></i>(+1) 234 567 8901</p>
-                <p class="address"><i class="icon-dollar"></i><a href="mailto:hello@website.com">hello@website.com</a></p>
+                <p>{{ $setting->company}}</p>
+                <p class="address"><i class="icon-location"></i>location:{{ $setting->address}}</p>
+                <p class="address"><i class="icon-phone"></i>fax:{{ $setting->fax}}</p>
+                <p class="address"><i class="fa fa-phone"></i>phone:{{ $setting->phone}}</p>
+                <p class="address"><i class="icon-dollar"></i><a href="mailto:hello@website.com">email:{{ $setting->email}}</a></p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright clearfix">
-                    <p>Copyright &copy; 2016 Medix. All Right Reserved</p>
+                    <p>Copyright &copy; 2016 {{ $setting->company}} All Right Reserved</p>
                     <ul class="social_icon">
-                        <li><a href="#" class="facebook"><i class="icon-facebook5"></i></a></li>
-                        <li><a href="#" class="twitter"><i class="icon-twitter4"></i></a></li>
-                        <li><a href="#" class="google"><i class="icon-google"></i></a></li>
-                    </ul>
+                        @if($setting->twitter!=null) <li><a href="{{ $setting->twitter}}" target="_blank" class="twitter"><i class="icon-twitter4"></i></a></li>@endif
+                            @if($setting->instagram!=null) <li><a href="{{ $setting->instagram}}" target="_blank" class="instagram"><i class="icon-instagram"></i></a></li>@endif
+                            @if($setting->youtube!=null) <li><a href="{{ $setting->youtube}}" target="_blank" class="youtube"><i class="icon-youtube"></i></a></li>@endif
+                            @if($setting->facebook!=null) <li><a href="{{ $setting->facebook}}" target="_blank" class="facebook"><i class="icon-facebook5"></i></a></li>@endif  </ul>
                 </div>
             </div>
         </div>

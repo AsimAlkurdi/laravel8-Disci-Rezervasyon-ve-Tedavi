@@ -42,7 +42,6 @@
                                 <th>title</th>
                                 <th>usd_id</th>
                                 <th>status</th>
-                                <th>ımage</th>
                                 <th>edit</th>
                                 <th>delete</th>
                             </tr>
@@ -51,17 +50,16 @@
 
                              @foreach($category as $category)
                             <tr>
-                                <td>{{$category->Id}}</td>
+                                <td>{{$category->id}}</td>
                                 <td>{{$category->title}}</td>
                                 <td>{{$category->categoryusd}}</td>
 
                                 <td>{{$category->status}}</td>
-                                <td><img src="{{url('/')}}/userfile/{{$category->image}}" height="30"> </td>
 
-                                <td><a href="{{url('/')}}/admin/category/edit/{{$category->Id}}" class="btn btn-outline-secondary mb-2">edit</a>
+                                <td><a href="{{url('/')}}/admin/category/edit/{{$category->id}}" class="btn btn-outline-secondary mb-2">edit</a>
 
                                 </td>
-                                <td><a href="{{url('/')}}/admin/category/destroy/{{$category->Id}}" class="btn btn-outline-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
+                                <td><a href="{{url('/')}}/admin/category/destroy/{{$category->id}}" class="btn btn-outline-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
                                 </td>
 
                             </tr>

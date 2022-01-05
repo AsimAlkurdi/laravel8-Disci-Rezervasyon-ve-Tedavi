@@ -34,11 +34,8 @@
                             <thead>
                             <tr>
                                 <th>id</th>
+                                <th>Category</th>
                                 <th>title</th>
-                                <th>keywords</th>
-                                <th>price</th>
-                                <th>created_at</th>
-                                <th>updated_at</th>
                                 <th>image</th>
                                 <th>image gallery</th>
                                 <th>edit</th>
@@ -50,11 +47,9 @@
                              @foreach($treatment as $treatment)
                             <tr>
                                 <td>{{$treatment->Id}}</td>
+                                <td>{{$treatment->category}}</td>
                                 <td>{{$treatment->title}}</td>
-                                <td>{{$treatment->keywords}}</td>
-                                <td>{{$treatment->price}}</td>
-                                <td>{{$treatment->created_at}}</td>
-                                <td>{{$treatment->updated_at}}</td>
+
                                 <td><img src="{{url('/')}}/userfile/{{$treatment->image}}" height="30"> </td>
                                 <td><a href="{{route('admin_image_add',['treatment_id'=>$treatment->Id])}}"> <img src="{{url('/')}}/userfile/2.jpg"  height="30"></a></td>
 

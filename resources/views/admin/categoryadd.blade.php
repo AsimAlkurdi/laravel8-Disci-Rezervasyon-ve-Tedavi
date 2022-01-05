@@ -33,14 +33,14 @@
         </div>
     </div>
     <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">detail</label>
+        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">description</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
                 <div id="basic" class="row layout-spacing  layout-top-spacing">
                     <div class="col-lg-12">
                         <div class="statbox widget box box-shadow">
 
                             <div class="widget-content widget-content-area">
-                                    <textarea id="demo1" name="detail">
+                                    <textarea id="demo1" name="description">
 
                                     </textarea>
 
@@ -57,10 +57,10 @@
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">   usd_id</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <select   name="usd_id" class="placeholder js-states form-control">
-                <option>اختار...</option>
+            <select  name="usd_id"  class="placeholder js-states form-control">
+                <option value="0" selected="selected" >select..</option>
                 @foreach($category as $ca)
-                <option value="{{$ca->Id}}">{{$ca->title}}</option>
+                <option value="{{$ca->id}}">{{$ca->title}}</option>
                 @endforeach
             </select>
         </div>
@@ -71,9 +71,9 @@
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">status</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
-                <option>اختار...</option>
-                <option value="1"> 1</option>
-                <option value="0">0</option>
+                <option>select..</option>
+                <option value="false"> false</option>
+                <option value="true">true</option>
 
             </select>
         </div>

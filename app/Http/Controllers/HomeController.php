@@ -2,13 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
 
-    public function login()
+    public function index()
+    {
+        $setting= Setting::first();
+
+        return view("front.home",['setting'=>$setting]);
+    }
+  public function aboutus()
+    {
+        return view("front.aboutus");
+
+    }
+
+    public function faq()
+    {
+        return view("front.aboutus");
+    }
+       public function references()
+    {
+        return view("front.aboutus");
+    }
+       public function contact()
+    {
+        return view("front.aboutus");
+    }
+
+
+
+  public function login()
     {
         return view("admin.login");
     }
