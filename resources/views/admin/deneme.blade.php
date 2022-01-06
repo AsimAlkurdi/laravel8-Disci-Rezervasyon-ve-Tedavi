@@ -4,9 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class treatmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +16,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $sql='select c.*, b.title as categoryusd
-              from categories c left join categories b
-               on c.usd_id = b.id
-              ORDER BY c.title';
-
-        $category = DB::select ($sql);
-        return view("admin.category",["category"=>$category]);
+        $sql='select h.*, c.title as category
+              from treatment h, categories c
+              where h.categoryid = c.id
+              ORDER BY h.title';
+        $treatment = DB::select ($sql);
+        return view("admin.treatment",["treatment"=>$treatment]);
     }
 
     /**
@@ -33,8 +33,7 @@ class CategoryController extends Controller
     {
         $category = DB::select ('select * FROM categories ORDER BY title');
 
-        return view("admin.categoryadd",["category"=>$category]);
-
+        return view("admin.treatmentadd",["category"=>$category]);
     }
 
     /**
@@ -53,18 +52,21 @@ class CategoryController extends Controller
         }
 
 
-        DB::table('categories')->insert([
+        DB::table('treatment')->insert([
             [ 'title' => $request->get('title'),
                 'keywords' => $request->get('keywords'),
                 'description' => $request->get('description'),
-                'usd_id' => $request->get('usd_id'),
+                'detail' => $request->get('detail'),
+                'categoryid' => $request->get('categoryid'),
+                'usersid' => Auth::id(),
                 'status' => $request->get('status'),
+                'price' => $request->get('price'),
                 'image' => $name
             ]
         ]);
 
 
-        return redirect('admin/category')->with('success', 'added new category successfully');
+        return redirect('admin/treatments')->with('success', 'added new treatment successfully');
     }
 
     /**
@@ -86,14 +88,14 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $category = DB::select ('select * FROM categories ORDER BY title');
 
-        $category = DB::select ('select c.*, b.title as categoryusd
-              from categories c left join categories b
-               on c.usd_id = b.id
-              where c.Id=?',[$id]);
-        $data= DB::select ('select * FROM categories ORDER BY title');
-        return view("admin.categoryedit",compact('data','category'));
-
+        //$data = DB::select ('select * FROM homes WHERE Id=?',[$id]);
+        $data=DB::select ('select h.*, c.title as category
+              from treatment h, category c
+              where h.categoryid = c.id AND h.Id=?',[$id]);
+        // $data = DB::select ($sql,[$id]);
+        return view("admin.treatmentedit",compact('data','category'));
     }
 
     /**
@@ -115,20 +117,22 @@ class CategoryController extends Controller
             $name=$request->image2;
         }
 
-        DB::table('categories')
+        DB::table('treatment')
             ->where('id',$id)
             ->update([
                 'title' => $request->title,
                 'keywords' => $request->keywords,
                 'description' => $request->description,
-                'usd_id' => $request->usd_id,
+                'detail' => $request->detail,
+                'categoryid' => $request->categoryid,
                 'status' => $request->status,
+                'price' => $request->price,
                 'image' => $name
 
             ]);
 
 
-        return redirect('admin/category')->with('success', 'updated category successfully');
+        return redirect('admin/treatments')->with('success', 'updated successfully');
     }
 
     /**
@@ -139,7 +143,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        DB::select ('DELETE FROM categories WHERE Id=?',[$id]);
-        return redirect('admin/category')->with('success', 'deleted successfully');
+        DB::select ('DELETE FROM treatment WHERE Id=?',[$id]);
+        return redirect('admin/treatments')->with('success', 'deleted successfully');
     }
 }

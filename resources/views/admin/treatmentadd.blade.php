@@ -89,7 +89,7 @@
             <select   name="categoryid" class="placeholder js-states form-control">
                 <option>اختار...</option>
                 @foreach($category as $ca)
-                <option value="{{$ca->Id}}">{{$ca->title}}</option>
+                <option value="{{$ca->id}}">{{$ca->title}}</option>
                 @endforeach
             </select>
         </div>
@@ -100,9 +100,9 @@
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">status</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
-                <option>select...</option>
-                <option value="1">1</option>
-                <option value="0">0</option>
+                <option>select..</option>
+                <option value="false"> false</option>
+                <option value="true">true</option>
 
             </select>
         </div>

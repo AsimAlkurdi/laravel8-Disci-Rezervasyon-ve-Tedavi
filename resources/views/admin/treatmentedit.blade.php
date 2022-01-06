@@ -18,7 +18,7 @@
         </div>
 
 
-<form action="{{url('/')}}/admin/treatments/update/{{$data[0]->Id}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/')}}/admin/treatments/update/{{$data[0]->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">title</label>
@@ -88,7 +88,7 @@
             <select   name="categoryid" class="placeholder js-states form-control">
                 <option value="{{$data[0]->categoryid}}" >{{$data[0]->category}}</option>
                 @foreach($category as $ca)
-                <option value="{{$ca->Id}}">{{$ca->title}}</option>
+                <option value="{{$ca->id}}">{{$ca->title}}</option>
                 @endforeach
             </select>
         </div>
@@ -100,8 +100,8 @@
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
                 <option  >{{$data[0]->status}}</option>
-                <option value="one">one</option>
-                <option value="two">two</option>
+                <option value="false"> false</option>
+                <option value="true">true</option>
 
             </select>
         </div>

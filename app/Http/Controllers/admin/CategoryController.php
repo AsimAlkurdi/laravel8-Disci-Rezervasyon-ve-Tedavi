@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,12 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $sql='select c.*, b.title as categoryusd
-              from category c left join category b
+        $category= DB::select('select c.*, b.title as categoryusd
+              from categories c left join categories b
                on c.usd_id = b.id
-              ORDER BY c.title';
+              ORDER BY c.title');
 
-        $category = DB::select ($sql);
         return view("admin.category",["category"=>$category]);
     }
 
@@ -31,8 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = DB::select ('select * FROM category ORDER BY title');
-
+        $category = DB::table ('categories')->get()->where('usd_id',0);
         return view("admin.categoryadd",["category"=>$category]);
 
     }
@@ -45,21 +44,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasfile('image'))
-        {
-            $file = $request->file('image');
-            $name=time().$file->getClientOriginalName();
-            $file->move(public_path().'/userfile/', $name);
-        }
-
-
-        DB::table('category')->insert([
+        DB::table('categories')->insert([
             [ 'title' => $request->get('title'),
                 'keywords' => $request->get('keywords'),
                 'description' => $request->get('description'),
                 'usd_id' => $request->get('usd_id'),
                 'status' => $request->get('status'),
-                'image' => $name
+                'image' => $request->get('image'),
+
             ]
         ]);
 
@@ -70,10 +62,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
         //
     }
@@ -81,41 +73,32 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category,$id)
     {
 
         $category = DB::select ('select c.*, b.title as categoryusd
-              from category c left join category b
+              from categories c left join categories b
                on c.usd_id = b.id
               where c.Id=?',[$id]);
-        $data= DB::select ('select * FROM category ORDER BY title');
+        $data= DB::select ('select * FROM categories ORDER BY title');
         return view("admin.categoryedit",compact('data','category'));
 
     }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category, $id)
     {
-        if($request->hasfile('image'))
-        {
-            $file = $request->file('image');
-            $name=time().$file->getClientOriginalName();
-            $file->move(public_path().'/userfile/', $name);
-        }
-        else{
-            $name=$request->image2;
-        }
 
-        DB::table('category')
+
+        DB::table('categories')
             ->where('id',$id)
             ->update([
                 'title' => $request->title,
@@ -123,23 +106,22 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'usd_id' => $request->usd_id,
                 'status' => $request->status,
-                'image' => $name
 
             ]);
 
 
         return redirect('admin/category')->with('success', 'updated category successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category,$id)
     {
-        DB::select ('DELETE FROM category WHERE Id=?',[$id]);
+        DB::select ('DELETE FROM categories WHERE Id=?',[$id]);
         return redirect('admin/category')->with('success', 'deleted successfully');
     }
 }
+

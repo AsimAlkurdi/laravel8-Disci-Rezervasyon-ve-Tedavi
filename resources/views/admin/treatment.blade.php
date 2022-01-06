@@ -46,17 +46,17 @@
 
                              @foreach($treatment as $treatment)
                             <tr>
-                                <td>{{$treatment->Id}}</td>
+                                <td>{{$treatment->id}}</td>
                                 <td>{{$treatment->category}}</td>
                                 <td>{{$treatment->title}}</td>
 
                                 <td><img src="{{url('/')}}/userfile/{{$treatment->image}}" height="30"> </td>
-                                <td><a href="{{route('admin_image_add',['treatment_id'=>$treatment->Id])}}"> <img src="{{url('/')}}/userfile/2.jpg"  height="30"></a></td>
+                                <td><a href="{{route('admin_image_add',['treatment_id'=>$treatment->id])}}"> <img src="{{url('/')}}/userfile/2.jpg"  height="30"></a></td>
 
-                                <td><a href="{{url('/')}}/admin/treatments/edit/{{$treatment->Id}}" class="btn btn-outline-secondary mb-2">edit</a>
+                                <td><a href="{{url('/')}}/admin/treatments/edit/{{$treatment->id}}" class="btn btn-outline-secondary mb-2">edit</a>
 
                                 </td>
-                                <td><a href="{{url('/')}}/admin/treatments/destroy/{{$treatment->Id}}" class="btn btn-outline-danger  mb-2">delete</a>
+                                <td><a href="{{url('/')}}/admin/treatments/destroy/{{$treatment->id}}" class="btn btn-outline-danger  mb-2">delete</a>
                                 </td>
 
                             </tr>
