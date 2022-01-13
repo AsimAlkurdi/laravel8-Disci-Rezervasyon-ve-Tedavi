@@ -50,7 +50,11 @@
                                 <td>{{$treatment->category}}</td>
                                 <td>{{$treatment->title}}</td>
 
-                                <td><img src="{{url('/')}}/userfile/{{$treatment->image}}" height="30"> </td>
+                                <td>
+
+                                    <img src="{{url('/')}}/userfile/{{$treatment->image}}" height="30">
+
+                                </td>
                                 <td><a href="{{route('admin_image_add',['treatment_id'=>$treatment->id])}}"> <img src="{{url('/')}}/userfile/2.jpg"  height="30"></a></td>
 
                                 <td><a href="{{url('/')}}/admin/treatments/edit/{{$treatment->id}}" class="btn btn-outline-secondary mb-2">edit</a>

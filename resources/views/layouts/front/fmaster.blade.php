@@ -1,3 +1,6 @@
+@php
+  $setting = App\Http\Controllers\HomeController::getsetting()
+@endphp
 <!doctype html>
 <html lang="en">
 <head>
@@ -63,37 +66,33 @@
                         <div id="fixed-collapse-navbar" class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category</a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="index.html">Home V1</a></li>
+                                        <li><a href="{{route('home')}}">Home V1</a></li>
 
                                     </ul>
                                 </li>
-                                <li><a href="{{route('aboutus')}}">about us</a></li>
-
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="services.html">Services V1</a></li>
-                                        <li><a href="services_2.html">Services V2</a></li>
-                                        <li><a href="doctors.html">Doctors</a></li>
-                                        <li><a href="departments.html">Departments</a></li>
-                                        <li><a href="procedure.html">Procedures</a></li>
-                                        <li><a href="blog-detail.html">Blog Detail</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">gallery</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="gallery.html">Gallery Three</a></li>
-                                        <li><a href="gallery4c.html">Gallery Four column</a></li>
-                                        <li><a href="gallery2c.html">Gallery Two column</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">blog</a></li>
+                                @include('front.category')
                                 <li><a href="appointment.html">appointment</a></li>
+                                <li><a href="{{route('aboutus')}}">about us</a></li> <li><a href="blog.html">blog</a></li>
                                 <li><a href="contact.html">contact us</a></li>
+                                <li><a href="{{route('references')}}">references</a></li>
+
+                                @auth
+
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">{{Auth::user()->name}}</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{route('myprofile')}}">My Account</a> </li>
+                                        <li><a href="gallery4c.html">Gallery Four column</a></li>
+                                        <li><a href="{{ route('admin_logout') }}">Log Out</a></li>
+                                    </ul>
+                                </li>
+                                @endauth
+                                @guest
+                                    <li><a href="/login">login</a></li>
+                                    <li><a href="/register">join</a></li>
+                                @endguest
                             </ul>
                         </div>
                     </nav>
@@ -125,7 +124,7 @@
                 <ul class="widget_links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Specilaties</a></li>
-                    <li><a href="{{url('/')}}/front/aboutus">About Us</a></li>
+                    <li><a href="{{route('aboutus')}}">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Events</a></li>
@@ -158,7 +157,7 @@
                 <p class="address"><i class="icon-location"></i>location:{{ $setting->address}}</p>
                 <p class="address"><i class="icon-phone"></i>fax:{{ $setting->fax}}</p>
                 <p class="address"><i class="fa fa-phone"></i>phone:{{ $setting->phone}}</p>
-                <p class="address"><i class="icon-dollar"></i><a href="mailto:hello@website.com">email:{{ $setting->email}}</a></p>
+                <p class="address"><i class="icon-dollar"></i>email:{{ $setting->email}}</p>
             </div>
         </div>
         <div class="row">

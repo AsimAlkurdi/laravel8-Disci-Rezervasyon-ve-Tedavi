@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $appends =[
+        'parent'
+    ];
+
+
+    public function treatments()
+    {
+        return $this->hasMany(Treatment::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class,'usd_id');
+    }
+     public function children()
+    {
+        return $this->hasMany(Category::class,'usd_id');
+    }
 }

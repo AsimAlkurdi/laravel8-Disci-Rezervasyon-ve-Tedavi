@@ -63,7 +63,7 @@
                     <option value="{{$category[0]->usd_id}}" >{{$category[0]->categoryusd}}</option>
                 @endif
                 @foreach($data as $ca)
-                <option value="{{$ca->id}}">{{$ca->title}}</option>
+                <option value="{{$ca->id}}">{{ \App\Http\Controllers\admin\CategoryController::getParentTree($ca,$ca->title)  }}</option>
                 @endforeach
             </select>
         </div>

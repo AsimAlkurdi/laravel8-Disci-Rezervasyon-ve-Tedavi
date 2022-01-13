@@ -25,7 +25,7 @@ class ImageController extends Controller
      */
     public function create($treatment_id)
     {
-        $data = DB::select ('select * FROM treatment where Id=?',[$treatment_id]);
+        $data = DB::select ('select * FROM treatments where Id=?',[$treatment_id]);
         $image = DB::select ('select * FROM images where treatment_id=?',[$treatment_id]);
         return view("admin.imageadd",["data"=>$data],["image"=>$image]);
     }

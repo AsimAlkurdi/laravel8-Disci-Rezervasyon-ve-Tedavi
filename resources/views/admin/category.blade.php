@@ -48,11 +48,12 @@
                             </thead>
                             <tbody>
 
-                             @foreach($category as $category)
+                             @foreach($datalist as $category)
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->title}}</td>
-                                <td>{{$category->categoryusd}}</td>
+
+                                <td>{{ \App\Http\Controllers\admin\CategoryController::getParentTree($category ,$category->title) }}</td>
 
                                 <td>{{$category->status}}</td>
 

@@ -47,7 +47,7 @@
 
 
                                         </td>
-                                        <td><a href="{{route('admin_image_delete',['id'=>$image->Id,'treatment_id'=>$data[0]->Id])}}" class="btn btn-outline-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
+                                        <td><a href="{{route('admin_image_delete',['id'=>$image->Id,'treatment_id'=>$data[0]->id])}}" class="btn btn-outline-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -71,7 +71,7 @@
                             <div class="w-shadow-top"></div>
                             <div class="timeline-line">
 
-                                <form action="{{route('admin_image_store',$data[0]->Id)}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('admin_image_store',$data[0]->id)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <div class="col-xl-10 col-lg-9 col-sm-10">

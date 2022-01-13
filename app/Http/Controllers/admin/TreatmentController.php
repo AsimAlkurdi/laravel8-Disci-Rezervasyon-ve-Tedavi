@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
-class treatmentController extends Controller
+class TreatmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +18,11 @@ class treatmentController extends Controller
      */
     public function index()
     {
-        $sql='select h.*, c.title as category
-              from treatment h, category c
+        $treatment= DB::select('select h.*, c.title as category
+              from treatments h, categories c
               where h.categoryid = c.id
-              ORDER BY h.title';
-        $treatment = DB::select ($sql);
+              ORDER BY h.title');
+
         return view("admin.treatment",["treatment"=>$treatment]);
     }
 
@@ -31,7 +33,7 @@ class treatmentController extends Controller
      */
     public function create()
     {
-        $category = DB::select ('select * FROM category ORDER BY title');
+        $category = DB::select ('select * FROM categories ORDER BY title');
 
         return view("admin.treatmentadd",["category"=>$category]);
     }
@@ -50,32 +52,30 @@ class treatmentController extends Controller
             $name=time().$file->getClientOriginalName();
             $file->move(public_path().'/userfile/', $name);
         }
+        $data = new Treatment;
+        $data->title= $request->input('title');
+        $data->keywords = $request->input('keywords');
+        $data->description = $request->input('description');
+        $data->detail = $request->input('detail');
+        $data->categoryid = $request->input('categoryid');
+        $data->usersid = Auth::id();
+        $data->status = $request->input('status');
+        $data->price = $request->input('price');
+        $data->image = $name;
 
-
-        DB::table('treatment')->insert([
-            [ 'title' => $request->get('title'),
-                'keywords' => $request->get('keywords'),
-                'description' => $request->get('description'),
-                'detail' => $request->get('detail'),
-                'categoryid' => $request->get('categoryid'),
-                'usersid' => Auth::id(),
-                'status' => $request->get('status'),
-                'price' => $request->get('price'),
-                'image' => $name
-            ]
-        ]);
-
+        $data->save();
 
         return redirect('admin/treatments')->with('success', 'added new treatment successfully');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Treatment  $treatment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Treatment $treatment)
     {
         //
     }
@@ -83,41 +83,39 @@ class treatmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Treatment  $treatment
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Treatment $treatment, $id)
     {
-        $category = DB::select ('select * FROM category ORDER BY title');
+        $category = DB::select ('select * FROM categories ORDER BY title');
 
         //$data = DB::select ('select * FROM homes WHERE Id=?',[$id]);
         $data=DB::select ('select h.*, c.title as category
-              from treatment h, category c
+              from treatments h, categories c
               where h.categoryid = c.id AND h.Id=?',[$id]);
         // $data = DB::select ($sql,[$id]);
         return view("admin.treatmentedit",compact('data','category'));
     }
 
-    /**
+/**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Treatment  $treatment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Treatment $treatment,$id)
     {
+
         if($request->hasfile('image'))
         {
             $file = $request->file('image');
             $name=time().$file->getClientOriginalName();
             $file->move(public_path().'/userfile/', $name);
         }
-        else{
-            $name=$request->image2;
-        }
 
-        DB::table('treatment')
+        DB::table('treatments')
             ->where('id',$id)
             ->update([
                 'title' => $request->title,
@@ -138,12 +136,12 @@ class treatmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Treatment  $treatment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Treatment $treatment,$id)
     {
-        DB::select ('DELETE FROM treatment WHERE Id=?',[$id]);
+        DB::select ('DELETE FROM treatments WHERE Id=?',[$id]);
         return redirect('admin/treatments')->with('success', 'deleted successfully');
     }
 }

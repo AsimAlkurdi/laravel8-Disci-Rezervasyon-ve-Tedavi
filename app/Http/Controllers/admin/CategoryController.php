@@ -6,9 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+
+    protected $appends =[
+        'getParentTree'
+    ];
+
+    public static function getParentTree($category , $title)
+    {
+        if ($category->usd_id == 0){
+            return $title;
+        }
+        $parent = Category::find($category->usd_id);
+        $title = $parent->title . ' > ' . $title;
+        return CategoryController::getParentTree($parent,$title);
+    }
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +35,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $datalist= Category::with('children')->get();
         $category= DB::select('select c.*, b.title as categoryusd
               from categories c left join categories b
                on c.usd_id = b.id
               ORDER BY c.title');
 
-        return view("admin.category",["category"=>$category]);
+        return view("admin.category",["category"=>$category],["datalist"=>$datalist]);
     }
 
     /**
@@ -31,7 +51,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = DB::table ('categories')->get()->where('usd_id',0);
+        $category = Category::with('children')->get();
         return view("admin.categoryadd",["category"=>$category]);
 
     }
@@ -44,13 +64,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/userfile/', $name);
+        }
         DB::table('categories')->insert([
             [ 'title' => $request->get('title'),
                 'keywords' => $request->get('keywords'),
                 'description' => $request->get('description'),
                 'usd_id' => $request->get('usd_id'),
                 'status' => $request->get('status'),
-                'image' => $request->get('image'),
+                'image' => $name,
 
             ]
         ]);
@@ -83,7 +110,8 @@ class CategoryController extends Controller
               from categories c left join categories b
                on c.usd_id = b.id
               where c.Id=?',[$id]);
-        $data= DB::select ('select * FROM categories ORDER BY title');
+        $data= Category::with('children')->get();
+
         return view("admin.categoryedit",compact('data','category'));
 
     }
@@ -96,6 +124,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category, $id)
     {
+        if($request->hasfile('image'))
+    {
+        $file = $request->file('image');
+        $name=time().$file->getClientOriginalName();
+        $file->move(public_path().'/userfile/', $name);
+    }
 
 
         DB::table('categories')
@@ -106,6 +140,7 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'usd_id' => $request->usd_id,
                 'status' => $request->status,
+                'image' => $name,
 
             ]);
 

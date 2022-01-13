@@ -87,7 +87,7 @@
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">categoryid</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="categoryid" class="placeholder js-states form-control">
-                <option>اختار...</option>
+                <option>select..</option>
                 @foreach($category as $ca)
                 <option value="{{$ca->id}}">{{$ca->title}}</option>
                 @endforeach
