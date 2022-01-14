@@ -33,7 +33,7 @@
                     <h2 class="heading">Welcome to Medix</h2>
                     <hr class="heading_space">
                 </div>
-                <div class="col-md-7 col-sm-6">
+                <div class="col-md-5 col-sm-6">
                     <p class="half_space">{!! $setting->aboutus !!}</p>
                       <ul class="welcome_list">
                         <li>Cardiothoracic Surgery</li>
@@ -43,7 +43,7 @@
                         <li>Neurology</li>
                     </ul>
                 </div>
-                <div class="col-md-5 col-sm-6">
+                <div class="col-md-7 col-sm-6">
                     <img class="img-responsive" src="{{url('/')}}/userfile/111.jpg" alt="welcome medix">
                 </div>
             </div>

@@ -73,10 +73,10 @@
                                     </ul>
                                 </li>
                                 @include('front.category')
-                                <li><a href="appointment.html">appointment</a></li>
-                                <li><a href="{{route('aboutus')}}">about us</a></li> <li><a href="blog.html">blog</a></li>
-                                <li><a href="contact.html">contact us</a></li>
-                                <li><a href="{{route('references')}}">references</a></li>
+                                <li><a href="appointment.html">Appointment</a></li>
+                                <li><a href="{{route('aboutus')}}">About Us</a></li>
+                                <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                <li><a href="{{route('references')}}">References</a></li>
 
                                 @auth
 

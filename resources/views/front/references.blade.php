@@ -36,7 +36,7 @@
                 <div >
                     <p >{!! $setting->references !!}</p>
 
-                    </ul>
+
                 </div>
 
             </div>

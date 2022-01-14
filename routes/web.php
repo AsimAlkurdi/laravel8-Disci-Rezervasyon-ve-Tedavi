@@ -19,6 +19,7 @@ Route::get('/aboutus', [App\Http\Controllers\front\HomeController::class, 'about
 Route::get('/references', [App\Http\Controllers\HomeController::class, 'references'])->name('references');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
+Route::post('/sendmessage', [App\Http\Controllers\HomeController::class, 'sendmessage'])->name('sendmessage');
 
 
 
@@ -50,6 +51,14 @@ Route::get('category/show/{id}', [App\Http\Controllers\admin\CategoryController:
 Route::post('category/create', [App\Http\Controllers\admin\CategoryController::class, 'store']);
 Route::get('category/add', [App\Http\Controllers\admin\CategoryController::class, 'create']);
 Route::post('category/update/{id}', [App\Http\Controllers\admin\CategoryController::class, 'update']);
+
+
+//message işlemleri
+Route::get('messages', [App\Http\Controllers\admin\MessageController::class, 'index'])->name('admin_message');
+Route::get('messages/edit/{id}', [App\Http\Controllers\admin\MessageController::class, 'edit'])->name('admin_message_edit');
+Route::get('messages/destroy/{id}', [App\Http\Controllers\admin\MessageController::class, 'destroy'])->name('admin_message_destroy');
+Route::get('messages/show/{id}', [App\Http\Controllers\admin\MessageController::class, 'show'])->name('admin_message_show');
+Route::post('messages/update/{id}', [App\Http\Controllers\admin\MessageController::class, 'update'])->name('admin_message_update');
 
 
 //images işlemleri
