@@ -37,17 +37,6 @@
     <p class="loader__label"><img src="{{url('/')}}/assets/front/images/logo.png" alt="logo"></p>
 </div>
 
-<!--Topbar-->
-<div class="topbar">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="pull-left hidden-xs">Medix Healthcare Come to Expect the Best in Town</p>
-                <p class="pull-right"><i class="fa fa-ambulance"></i>Emergency Line (+001) 321-125-152</p>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--Header-->
 <header id="main-navigation">

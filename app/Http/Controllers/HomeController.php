@@ -26,10 +26,23 @@ class HomeController extends Controller
  public function index()
     {
         $setting= Setting::first();
-
-        return view("front.home",['setting'=>$setting , 'page'=>'home']);
+        $slider = Treatment::select('id','title','image','price','slug')->limit(4)->get();
+        $data=[
+            'setting'=>$setting ,
+            'slider'=>$slider,
+            'page'=>'home',
+        ];
+        return view("front.home",$data);
     }
-  public function aboutus()
+
+    public function appointment($id)
+    {
+        $data= Treatment::find($id);
+        print_r($data);
+        exit();
+    }
+
+    public function aboutus()
     {
         $setting= Setting::first();
 
@@ -54,6 +67,8 @@ class HomeController extends Controller
 
         return view('front.contact',['setting'=>$setting]);
     }
+
+
 
        public function sendmessage(Request $request)
     {
