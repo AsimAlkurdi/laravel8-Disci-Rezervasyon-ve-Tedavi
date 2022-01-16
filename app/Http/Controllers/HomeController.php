@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Message;
 use App\Models\Setting;
 use App\Models\Treatment;
@@ -37,6 +38,16 @@ class HomeController extends Controller
 
     public function appointment($id)
     {
+        //$datalist= DB::select ('select * FROM images where treatment_id=?',[$id]);
+        $datalist=Image::where('treatment_id', $id)->get();
+        $data= Treatment::find($id);
+        return view("front.treatmentdetails",['data'=>$data ,'datalist'=>$datalist ]);
+
+    }
+
+    public function makeappointment($id)
+    {
+        echo "add appointment <br>";
         $data= Treatment::find($id);
         print_r($data);
         exit();

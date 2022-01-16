@@ -34,7 +34,10 @@
             <div class="col-md-7 col-sm-6 department">
                 <p class="half_space">{{$treatment->detail}}</p>
                 <p class="half_space">{{$treatment->description}}</p>
-                <p class="half_space">Price:${{$treatment->price}}</p> <a class="red-btn button3" href="appointment.html" data-text="Appointment">Appointment</a>
+                <p class="half_space">Price:${{$treatment->price}}</p>
+                <a class="red-btn button3" href="{{route('appointment',['id' => $treatment->id])}}" data-text="Appointment">More Detail</a>
+                <a class="red-btn button3" href="{{route('makeappointment',['id' => $treatment->id])}}" data-text="Appointment">Make Appointment</a>
+
             </div>
             <div class="col-md-5 col-sm-6">
                 <img class="img-responsive" src="{{url('/')}}/userfile/{{$treatment->image}}" alt="welcome medix">

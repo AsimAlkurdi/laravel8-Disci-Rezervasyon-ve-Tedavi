@@ -93,9 +93,9 @@
 
 
 <!--Slider-->
-@yield('slider');
-@yield('appointment');
-@yield('content');
+@yield('slider')
+@yield('appointment')
+@yield('content')
 
 <!--Footer-->
 <footer class="padding-top dark">

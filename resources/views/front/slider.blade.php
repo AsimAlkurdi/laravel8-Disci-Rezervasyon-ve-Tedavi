@@ -1,13 +1,12 @@
 @Section('slider')
-
-    <section class="slider-main" >
+<section class="slider-main" >
 
     <div class="rev_slider_wrapper">
         <!-- START REVOLUTION SLIDER 5.0 auto mode -->
         <div id="rev_slider" class="rev_slider"  data-version="5.0">
             <ul>
             @php
-                $i=0;
+                {{$i=0;}}
             @endphp
                 @foreach($slider as $rs)
                     @php

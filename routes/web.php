@@ -22,6 +22,7 @@ Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('f
 Route::post('/sendmessage', [App\Http\Controllers\HomeController::class, 'sendmessage'])->name('sendmessage');
 Route::get('/appointment/{id}', [App\Http\Controllers\HomeController::class, 'appointment'])->name('appointment');
 Route::get('/categorytreatment/{id}', [App\Http\Controllers\HomeController::class, 'categorytreatment'])->name('categorytreatment');
+Route::get('/makeappointment/{id}', [App\Http\Controllers\HomeController::class, 'makeappointment'])->name('makeappointment');
 
 
 
