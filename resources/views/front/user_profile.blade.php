@@ -36,7 +36,7 @@
                       <ul class="welcome_list">
                         <li><a href="{{route('myprofile')}}">My Account</a> </li>
                         <li><a href="{{route('home')}}">My Treatments</a> </li>
-                        <li><a href="{{route('home')}}">My comments</a></li>
+                        <li><a href="{{route('myreviews')}}">My comments</a></li>
                         <li><a href="{{route('admin_logout')}}">log out</a></li>
                     </ul>
                 </div>

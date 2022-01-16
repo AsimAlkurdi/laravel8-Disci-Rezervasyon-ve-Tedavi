@@ -90,7 +90,9 @@
         </div>
     </div>
 </header>
-
+@section('footer.js')
+    @livewireScripts
+@endsection
 
 <!--Slider-->
 @yield('slider')

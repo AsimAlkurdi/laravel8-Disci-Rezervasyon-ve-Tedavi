@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Message;
+use App\Models\Review;
 use App\Models\Setting;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
@@ -24,6 +25,13 @@ class HomeController extends Controller
         return Setting::first();
     }
 
+
+ public static function countreview($id)
+    {
+
+       return Review::where('treatmentid', $id)->count();
+    }
+
  public function index()
     {
         $setting= Setting::first();
@@ -41,7 +49,8 @@ class HomeController extends Controller
         //$datalist= DB::select ('select * FROM images where treatment_id=?',[$id]);
         $datalist=Image::where('treatment_id', $id)->get();
         $data= Treatment::find($id);
-        return view("front.treatmentdetails",['data'=>$data ,'datalist'=>$datalist ]);
+        $review = Review::where('treatmentid', $id)->get();
+        return view("front.treatmentdetails",['data'=>$data ,'datalist'=>$datalist,'review'=>$review ]);
 
     }
 

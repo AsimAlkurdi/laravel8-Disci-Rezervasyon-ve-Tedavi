@@ -72,6 +72,14 @@ Route::post('store/{treatment_id}', [App\Http\Controllers\admin\ImageController:
 Route::get('create/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'create'])->name('admin_image_add');
     });
 
+//reviews işlemleri
+    Route::prefix('review')->group(function (){
+        Route::get('/', [App\Http\Controllers\admin\ReviewController::class, 'index'])->name('admin_review');
+Route::get('show/{id}', [App\Http\Controllers\admin\ReviewController::class, 'show'])->name('admin_review_show');
+Route::post('update/{id}', [App\Http\Controllers\admin\ReviewController::class, 'update'])->name('admin_review_update');
+Route::get('destroy/{id}', [App\Http\Controllers\admin\ReviewController::class, 'destroy'])->name('admin_review_destroy');
+    });
+
     //setting işlemleri
 
     Route::get('setting', [App\Http\Controllers\admin\SettingController::class, 'index'])->name('admin_setting');
@@ -83,6 +91,8 @@ Route::get('create/{treatment_id}', [App\Http\Controllers\admin\ImageController:
 
 route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function (){
     Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('myprofile');
+    Route::get('/myreviews', [App\Http\Controllers\UserController::class, 'myreviews'])->name('myreviews');
+    Route::get('/destroymyreview/{id}', [App\Http\Controllers\UserController::class, 'destroymyreview'])->name('destroymyreview');
 
 });
 

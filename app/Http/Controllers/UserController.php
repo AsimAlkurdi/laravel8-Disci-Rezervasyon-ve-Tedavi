@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -16,6 +19,26 @@ class UserController extends Controller
     {
         return view('front.user_profile');
     }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myreviews()
+    {
+
+        $datalist = Review::where('usersid','=',Auth::user()->id)->get();
+        return view('front.user_comments',['datalist'=>$datalist ]);
+    }
+
+
+    public function destroymyreview(Review $review,$id)
+    {
+        $data = Review::find($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'deleted successfully');    }
 
     /**
      * Show the form for creating a new resource.
