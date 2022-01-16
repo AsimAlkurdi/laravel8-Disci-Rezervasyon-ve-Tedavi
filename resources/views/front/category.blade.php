@@ -7,10 +7,8 @@
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">Our treatments</a>
     <ul class="dropdown-menu">
         @foreach($parantCategoies as $rs)
-        <li><a href="services.html">{{$rs->title}}</a></li>
-            @if(count($rs->children))
-                @include('front.categorytree',['children' => $rs->children])
-            @endif
+        <li><a href="{{route('categorytreatment',['id' => $rs->id])}}">{{$rs->title}}</a></li>
+
         @endforeach
     </ul>
 </li>

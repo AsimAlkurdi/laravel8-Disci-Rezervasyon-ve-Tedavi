@@ -21,6 +21,7 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
 Route::post('/sendmessage', [App\Http\Controllers\HomeController::class, 'sendmessage'])->name('sendmessage');
 Route::get('/appointment/{id}', [App\Http\Controllers\HomeController::class, 'appointment'])->name('appointment');
+Route::get('/categorytreatment/{id}', [App\Http\Controllers\HomeController::class, 'categorytreatment'])->name('categorytreatment');
 
 
 

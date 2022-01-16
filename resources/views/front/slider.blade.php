@@ -1,6 +1,6 @@
 @Section('slider')
 
-    <section class="slider-main">
+    <section class="slider-main" >
 
     <div class="rev_slider_wrapper">
         <!-- START REVOLUTION SLIDER 5.0 auto mode -->
@@ -14,8 +14,8 @@
                         $i+=1;
                     @endphp
                 <!-- SLIDE  -->
-                <li data-transition="fade" @if($i==1) active @endif>
-                    <img src="{{url('/')}}/userfile/{{$rs->image}}" style="height: 250px" alt="" data-bgposition="center center" data-bgfit="cover">
+                <li  data-transition="fade" @if($i==1) active @endif>
+                    <img src="{{url('/')}}/userfile/{{$rs->image}}"  alt="" data-bgposition="center center" data-bgfit="cover">
                     <h1 class="tp-caption tp-resizeme"
                         data-x="left" data-hoffset="650"
                         data-y="200" data-width="full"

@@ -42,6 +42,26 @@ class HomeController extends Controller
         exit();
     }
 
+
+
+    public function categorytreatment($id)
+    {
+        $setting= Setting::first();
+        $datalist =Treatment::select('id','title','price')->limit(6)->get();
+        $datalists =Treatment::latest()->take(5)->get();
+        $data= Treatment::where('categoryid', $id)->get();
+        $datas=[
+            'setting'=>$setting ,
+            'datalist'=>$datalist,
+            'datalists'=>$datalists,
+            'data'=>$data,
+            'page'=>'home',
+        ];
+
+
+        return view("front.categorytreatment",$datas);
+    }
+
     public function aboutus()
     {
         $setting= Setting::first();
