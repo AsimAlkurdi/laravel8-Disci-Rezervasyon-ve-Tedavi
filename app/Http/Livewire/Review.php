@@ -3,13 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Treatment;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Review extends Component
 {
-    public $treatmentid,$record,$comment,$ip,$subject;
+    public $treatmentid,$record,$comment,$subject;
 
-    public function amount($id)
+    public function mount($id)
     {
         $this->record = Treatment::findOrFail($id);
         $this->treatmentid =$this->record->id;
@@ -39,7 +40,7 @@ class Review extends Component
             'subject' => $this->subject ,
             'comment'  => $this->comment,
             'treatmentid'  => $this->treatmentid,
-            'usersid'  => Auth::id,
+            'usersid'  => Auth::user()->id,
             'ip' =>$_SERVER['REMOTE_ADDR']
 
         ]);

@@ -63,7 +63,7 @@ $countreview = \App\Http\Controllers\HomeController::countreview($data->id);
                         @foreach($review as $re)
                         <div class="media blog-reply">
                             <div class="media-body">
-                                <span>{{$re->created_at}}</span>
+                                <span>{{$re->user->name}} {{$re->created_at}}</span>
                                 <p>Subject :{{$re->subject}}</p>
                                 <p>{{$re->comment}}</p>
 
@@ -73,7 +73,7 @@ $countreview = \App\Http\Controllers\HomeController::countreview($data->id);
 
                         <h3>Leave a Reply</h3>
                           @livewire('review', ['id' => $data->id])
-
+                        @livewireScripts
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-5">

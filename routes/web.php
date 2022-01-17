@@ -56,6 +56,18 @@ Route::get('category/add', [App\Http\Controllers\admin\CategoryController::class
 Route::post('category/update/{id}', [App\Http\Controllers\admin\CategoryController::class, 'update']);
 
 
+
+
+//Faq işlemleri
+Route::get('faq', [App\Http\Controllers\admin\FaqController::class, 'index'])->name('admin_faq');
+Route::get('faq/edit/{id}', [App\Http\Controllers\admin\FaqController::class, 'edit'])->name('admin_message_edit');
+Route::get('faq/destroy/{id}', [App\Http\Controllers\admin\FaqController::class, 'destroy'])->name('admin_faq_destroy');
+Route::get('faq/show/{id}', [App\Http\Controllers\admin\FaqController::class, 'show'])->name('admin_faq_show');
+Route::post('faq/create', [App\Http\Controllers\admin\FaqController::class, 'store'])->name('admin_faq_store');
+Route::get('faq/add', [App\Http\Controllers\admin\FaqController::class, 'create'])->name('admin_faq_create');
+Route::post('faq/update/{id}', [App\Http\Controllers\admin\FaqController::class, 'update'])->name('admin_faq_update');
+
+
 //message işlemleri
 Route::get('messages', [App\Http\Controllers\admin\MessageController::class, 'index'])->name('admin_message');
 Route::get('messages/edit/{id}', [App\Http\Controllers\admin\MessageController::class, 'edit'])->name('admin_message_edit');

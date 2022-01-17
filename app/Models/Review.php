@@ -21,12 +21,12 @@ class Review extends Model
         'subject',
    ];
 
-    public function treatment()
+    public function treatmentt()
     {
-        return $this->belongsTo(Treatment::class);
+        return $this->belongsTo(Treatment::class, 'treatmentid');
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'usersid');
     }
 }

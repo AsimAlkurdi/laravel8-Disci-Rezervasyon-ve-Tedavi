@@ -64,6 +64,7 @@
                                 @include('front.category')
                                 <li><a href="appointment.html">Appointment</a></li>
                                 <li><a href="{{route('aboutus')}}">About Us</a></li>
+                                <li><a href="{{route('faq')}}">FAQ</a></li>
                                 <li><a href="{{route('contact')}}">Contact Us</a></li>
                                 <li><a href="{{route('references')}}">References</a></li>
 

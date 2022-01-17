@@ -62,7 +62,7 @@
                    @foreach($datalist as $ca)
                        <tr>
                            <td>{{$ca->id}}</td>
-                           <td><a href="{{route('appointment',['id' => $ca->id])}}">{{ $ca->id}}</a></td>
+                           <td><a href="{{route('appointment',['id' => $ca->id])}}">{{$ca->treatmentt->title}}</a></td>
 
                            <td>{{$ca->subject}}</td>
                            <td>{{$ca->comment}}</td>

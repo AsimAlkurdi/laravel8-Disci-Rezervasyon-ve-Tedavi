@@ -28,6 +28,7 @@
     <style>
         .btn-light { border-color: transparent; }
     </style>
+    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
     <!--  END CUSTOM STYLE FILE  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
