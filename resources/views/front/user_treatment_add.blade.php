@@ -1,7 +1,8 @@
 @extends('layouts.front.fmaster')
 
 
-@section('title', 'User profile')
+@section('title'.'add treatment page')
+@section('keywords'.'')
 
 
 
@@ -33,7 +34,7 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
 
-                      <ul class="welcome_list">
+                    <ul class="welcome_list">
                         <li><a href="{{route('myprofile')}}">My Account</a> </li>
                         <li><a href="{{route('user_treatment')}}">My Treatments</a> </li>
                         <li><a href="{{route('myreviews')}}">My comments</a></li>
@@ -41,10 +42,45 @@
                     </ul>
                 </div>
                 <div class="col-md-9 col-sm-9">
-                @include('profile.show')
-                </div>
+
+           <form action="{{url('/')}}/admin/treatments/create" method="post" enctype="multipart/form-data">
+               @csrf
+               <div class="row">
+                 <div class="col-md-12">
+                   <div class="form-group">
+                <input class="form-control" type="text" required="" placeholder="Your Name">
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control" type="email" required="" placeholder="Email">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control" type="text" required="" placeholder="Website">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject" required="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <textarea placeholder="Message"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit button3">Submit Request</button>
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+
+</div>
+       </div>
+
     </section>
 
 

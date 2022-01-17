@@ -41,15 +41,23 @@
                     </ul>
                 </div>
                 <div class="col-md-9 col-sm-9">
-               <table id="example1" class="table table-bordered table-striped">
+                    <a href="{{route('user_treatment_create')}}"  class="btn btn-primary  mb-2">add new treatment</a>
+<br>
+<br>
+
+                    <table id="example1" class="table table-bordered table-striped">
                    <thead>
                    <tr>
-                       <th>Id</th>
-                       <th>Treatments</th>
-                       <th>Subject</th>
-                       <th>Comment</th>
-                       <th>Status</th>
-                       <th>Actions</th>
+                       <th>id</th>
+                       <th>Category</th>
+                       <th>Title</th>
+                       <th>Image</th>
+                       <th>Price</th>
+                       <th>image gallery</th>
+
+
+                       <th>edit</th>
+                       <th>delete</th>
                    </tr>
                    </thead>
                    <tbody>
@@ -62,16 +70,25 @@
                    @foreach($datalist as $ca)
                        <tr>
                            <td>{{$ca->id}}</td>
-                           <td><a href="{{route('appointment',['id' => $ca->id])}}">{{$ca->treatmentt->title}}</a></td>
+                           <td>{{$ca->category->title}}</td>
+                           <td>{{$ca->title}}</td>
+                           <td>{{$ca->price}}</td>
+                           <td>
 
-                           <td>{{$ca->subject}}</td>
-                           <td>{{$ca->comment}}</td>
-                           <td>{{$ca->status}}</td>
-
+                               <img src="{{url('/')}}/userfile/{{$ca->image}}" height="30">
 
                            </td>
-                           <td><a href="{{route('destroymyreview',['id' => $ca->id])}}" class="btn btn-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
+
+                           <td><a href="{{route('admin_image_add',['treatment_id'=>$ca->id])}}"> <img src="{{url('/')}}/userfile/2.jpg"  height="30"></a></td>
+
+
+                           <td><a href="{{route('user_treatment_edit',['id' => $ca->id])}}" class="btn btn-primary  mb-2">edit</a>
+
                            </td>
+                           <td><a href="{{route('user_treatment_destroy',['id' => $ca->id])}}" class="btn btn-danger  mb-2">delete</a>
+                           </td>
+
+
 
                        </tr>
 

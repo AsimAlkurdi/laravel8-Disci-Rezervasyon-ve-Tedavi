@@ -101,6 +101,9 @@
                     <li>
                         <a href="{{url('/')}}/admin/Users  "> Users </a>
                     </li>
+                      <li>
+                        <a href="{{url('/')}}/admin/doctors  "> Doctors </a>
+                    </li>
                     <li>
                         <a href="{{url('/')}}/admin/profile"> Profile </a>
                     </li>
