@@ -13,4 +13,8 @@ class Doctor extends Model
     {
         return $this->belongsTo(User::class, 'usersid');
     }
+    public function randevu()
+    {
+        return $this->hasMany(Randevu::class);
+    }
 }

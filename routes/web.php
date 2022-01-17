@@ -70,6 +70,18 @@ Route::post('doctors/update/{id}', [App\Http\Controllers\admin\DoctorController:
 
 
 
+//randevu işlemleri
+Route::get('randevu', [App\Http\Controllers\admin\RandevuController::class, 'index'])->name('admin_randevu');
+Route::get('randevu/edit/{id}', [App\Http\Controllers\admin\RandevuController::class, 'edit']);
+Route::get('randevu/destroy/{id}', [App\Http\Controllers\admin\RandevuController::class, 'destroy']);
+Route::get('randevu/show/{id}', [App\Http\Controllers\admin\RandevuController::class, 'show']);
+Route::post('randevu/create', [App\Http\Controllers\admin\RandevuController::class, 'store']);
+Route::get('randevu/add', [App\Http\Controllers\admin\RandevuController::class, 'create']);
+Route::post('randevu/update/{id}', [App\Http\Controllers\admin\RandevuController::class, 'update']);
+
+
+
+
 //Faq işlemleri
 Route::get('faq', [App\Http\Controllers\admin\FaqController::class, 'index'])->name('admin_faq');
 Route::get('faq/edit/{id}', [App\Http\Controllers\admin\FaqController::class, 'edit'])->name('admin_message_edit');
@@ -122,23 +134,17 @@ route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(fu
 
 route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'index'])->name('userprofile');
-    Route::get('treatments', [TreatmentController::class, 'index'])->name('user_treatment');
-
-    Route::get('treatments/edit/{id}', [TreatmentController::class, 'edit'])->name('user_treatment_edit');
-    Route::get('treatments/destroy/{id}', [TreatmentController::class, 'destroy'])->name('user_treatment_destroy');
-    Route::get('treatments/show/{id}', [TreatmentController::class, 'show'])->name('user_treatment_show');
-    Route::post('treatments/create', [TreatmentController::class, 'store'])->name('user_treatment_store');
-    Route::post('treatments/update/{id}', [TreatmentController::class, 'update'])->name('user_treatment_update');
-    Route::get('treatments/add', [TreatmentController::class, 'create'])->name('user_treatment_create');
 
 
-    //images işlemleri
-    Route::prefix('image')->group(function (){
-        Route::get('delete/{id}/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'destroy'])->name('user_image_delete');
-        Route::get('show', [App\Http\Controllers\admin\ImageController::class, 'show'])->name('user_image_show');
-        Route::post('store/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'store'])->name('user_image_store');
-        Route::get('create/{treatment_id}', [App\Http\Controllers\admin\ImageController::class, 'create'])->name('user_image_add');
-    });
+    //randevu işlemleri
+    Route::get('randevu', [App\Http\Controllers\RandevuController::class, 'index'])->name('user_randevu');
+    Route::get('randevu/edit/{id}', [App\Http\Controllers\RandevuController::class, 'edit'])->name('user_randevu_edit');
+    Route::get('randevu/destroy/{id}', [App\Http\Controllers\RandevuController::class, 'destroy'])->name('user_randevu_destroy');
+    Route::get('randevu/show/{id}', [App\Http\Controllers\RandevuController::class, 'show'])->name('user_randevu_show');
+    Route::post('randevu/create', [App\Http\Controllers\RandevuController::class, 'store'])->name('user_randevu_store');
+    Route::get('randevu/add', [App\Http\Controllers\RandevuController::class, 'create'])->name('user_randevu_create');
+    Route::post('randevu/update/{id}', [App\Http\Controllers\RandevuController::class, 'update'])->name('user_randevu_update');
+
 });
 
 Route::get('/admin/login', [App\Http\Controllers\HomeController::class, 'login'])->name('admin_login');

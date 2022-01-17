@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateRandevusTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('randevus', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->integer('treatmentid');
+            $table->integer('usersid');
+            $table->string('time');
+            $table->string('Date');
+            $table->integer('doctorid');
+            $table->integer('ip')->nullable();
+            $table->string('note', 100)->nullable();
+            $table->string('status', 5)->nullable()->default('false');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('randevus');
+    }
+}

@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="title">About Us</h2>
+                        <h2 class="title">Randevus</h2>
                         <div class="page_link"><a href="{{route('home')}}">Home</a><i class="fa fa-long-arrow-right"></i><span>About Us</span></div>
                     </div>
                 </div>
@@ -35,21 +35,30 @@
 
                       <ul class="welcome_list">
                         <li><a href="{{route('myprofile')}}">My Account</a> </li>
-                          <li><a href="{{route('user_randevu')}}">My Randevus</a> </li>
+                        <li><a href="{{route('user_randevu')}}">My Randevus</a> </li>
                         <li><a href="{{route('myreviews')}}">My comments</a></li>
                         <li><a href="{{route('admin_logout')}}">log out</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9 col-sm-9">
-               <table id="example1" class="table table-bordered table-striped">
+                    <a href="{{route('user_randevu_create')}}"  class="btn btn-primary  mb-2">Add New Randevu</a>
+<br>
+<br>
+
+                    <table id="example1" class="table table-bordered table-striped">
                    <thead>
                    <tr>
-                       <th>Id</th>
-                       <th>Treatments</th>
-                       <th>Subject</th>
-                       <th>Comment</th>
-                       <th>Status</th>
-                       <th>Actions</th>
+                       <th>id</th>
+                       <th>Treatment</th>
+                       <th>Patient Name</th>
+                       <th>Dcotor Name</th>
+                       <th>Note</th>
+                       <th>Date</th>
+                       <th>Time</th>
+                       <th>status</th>
+                       <th>edit</th>
+                       <th>delete</th>
+
                    </tr>
                    </thead>
                    <tbody>
@@ -62,18 +71,24 @@
                    @foreach($datalist as $ca)
                        <tr>
                            <td>{{$ca->id}}</td>
-                           <td><a href="{{route('appointment',['id' => $ca->id])}}">{{$ca->treatmentt->title}}</a></td>
-
-                           <td>{{$ca->subject}}</td>
-                           <td>{{$ca->comment}}</td>
+                           <td><a href="{{route('appointment',['id' => $ca->id])}}">{{$ca->treatment->title}}</a></td>
+                           <td>{{$ca->name}}</td>
+                           <td>{{$ca->doctor->name}}</td>
+                           <td>{{$ca->note}}</td>
+                           <td>{{$ca->Date}}</td>
+                           <td>{{$ca->time}}</td>
                            <td>{{$ca->status}}</td>
 
 
+
+                           <td><a href="{{route('user_randevu_edit',['id' => $ca->id])}}" class="btn btn-primary  mb-2">edit</a>
+
                            </td>
-                           <td><a href="{{route('destroymyreview',['id' => $ca->id])}}" class="btn btn-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
+                           <td><a href="{{route('user_randevu_destroy',['id' => $ca->id])}}" class="btn btn-danger  mb-2">delete</a>
                            </td>
 
                        </tr>
+
 
                    @endforeach
                    </tbody>
