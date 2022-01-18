@@ -55,7 +55,7 @@
                             <img src="{{url('/')}}/assets/admin/assets/img/90x90.jpg" class="img-fluid mr-2" alt="avatar">
                             <div class="media-body">
                                 <h5>{{Auth::user()->name}}</h5>
-                                <p>Project Leader</p>
+                                <p>{{Auth::user()->role->pluck('name')}}</p>
                             </div>
                         </div>
                     </div>

@@ -33,7 +33,8 @@ Route::get('/makeappointment/{id}', [App\Http\Controllers\HomeController::class,
 
 
 
-route::middleware('auth')->prefix('admin')->group(function (){
+Route::middleware('auth')->prefix('admin')->group(function (){
+    Route::middleware('admin')->group(function (){
 Route::get('/', [App\Http\Controllers\admin\HomeController::class, 'index'])->name('admin');
 
 //treatment işlemleri
@@ -123,7 +124,7 @@ Route::get('destroy/{id}', [App\Http\Controllers\admin\ReviewController::class, 
     Route::get('setting', [App\Http\Controllers\admin\SettingController::class, 'index'])->name('admin_setting');
     Route::post('setting/update', [App\Http\Controllers\admin\SettingController::class, 'update'])->name('admin_setting_update');
 
-
+    });
 });
 
 
