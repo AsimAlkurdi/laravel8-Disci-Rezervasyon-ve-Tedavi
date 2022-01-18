@@ -59,6 +59,20 @@ Route::post('category/update/{id}', [App\Http\Controllers\admin\CategoryControll
 
 
 
+//user işlemleri
+Route::get('user', [App\Http\Controllers\admin\UserController::class, 'index'])->name('admin_user');
+Route::get('user/edit/{id}', [App\Http\Controllers\admin\UserController::class, 'edit'])->name('admin_user_edit');
+Route::get('user/destroy/{id}', [App\Http\Controllers\admin\UserController::class, 'destroy']);
+Route::get('user/show/{id}', [App\Http\Controllers\admin\UserController::class, 'show'])->name('admin_user_show');
+Route::post('user/create', [App\Http\Controllers\admin\UserController::class, 'store']);
+Route::get('user/add', [App\Http\Controllers\admin\UserController::class, 'create']);
+Route::post('user/update/{id}', [App\Http\Controllers\admin\UserController::class, 'update']);
+Route::get('user/userrole/{id}', [App\Http\Controllers\admin\UserController::class, 'userrole'])->name('admin_user_role');
+Route::post('user/userrolestore/{id}', [App\Http\Controllers\admin\UserController::class, 'userrolestore'])->name('admin_user_role_store');
+Route::get('user/userroledelete/{userid}/{roleid}', [App\Http\Controllers\admin\UserController::class, 'userroledelete'])->name('admin_user_role_delete');
+
+
+
 //doctors işlemleri
 Route::get('doctors', [App\Http\Controllers\admin\DoctorController::class, 'index']);
 Route::get('doctors/edit/{id}', [App\Http\Controllers\admin\DoctorController::class, 'edit']);

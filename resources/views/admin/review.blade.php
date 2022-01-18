@@ -38,6 +38,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Treatments</th>
+                                <th>user name</th>
                                 <th>Subject</th>
                                 <th>Comment</th>
                                 <th>Status</th>
@@ -50,7 +51,8 @@
                             @foreach($datalist as $ca)
                                 <tr>
                                     <td>{{$ca->id}}</td>
-                                    <td>{{$ca->treatmenttitle}}</td>
+                                    <td>{{$ca->treatmentt->title}}</td>
+                                    <td><a href="{{route('admin_user_show',['id'=>$ca->id])}}">{{$ca->user->name}}</a></td>
 
                                     <td>{{$ca->subject}}</td>
                                     <td>{{$ca->comment}}</td>

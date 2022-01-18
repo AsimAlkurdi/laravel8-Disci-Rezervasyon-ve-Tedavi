@@ -16,10 +16,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $datalist = DB::select('select h.*, c.title as treatmenttitle, u.name as username
-              from reviews h, treatments c, users u
-              where h.treatmentid = c.id and h.usersid = u.id
-              ORDER BY h.id');
+        $datalist = Review::all();
         return view("admin.review",["datalist"=>$datalist]);
     }
 

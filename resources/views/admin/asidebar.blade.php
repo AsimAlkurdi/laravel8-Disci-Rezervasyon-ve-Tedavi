@@ -133,13 +133,13 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
                     <li>
-                        <a href="{{url('/')}}/admin/Users  "> Users </a>
+                        <a href="{{url('/')}}/admin/user  "> Users </a>
                     </li>
                       <li>
                         <a href="{{url('/')}}/admin/doctors  "> Doctors </a>
                     </li>
                     <li>
-                        <a href="{{url('/')}}/admin/profile"> Profile </a>
+                        <a href="{{route('admin_user_show',['id'=>Auth::user()->id])}}"> Profile </a>
                     </li>
                 </ul>
             </li>
