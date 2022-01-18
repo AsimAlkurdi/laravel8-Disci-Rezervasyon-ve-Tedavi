@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +19,8 @@ class TreatmentController extends Controller
      */
     public function index()
     {
-        $treatment= DB::select('select h.*, c.title as category
-              from treatments h, categories c
-              where h.categoryid = c.id
-              ORDER BY h.title');
-
-        return view("admin.treatment",["treatment"=>$treatment]);
+        $treatment= Treatment::all();
+        return view("admin.treatment",["treatment"=>$treatment ]);
     }
 
     /**
@@ -33,9 +30,10 @@ class TreatmentController extends Controller
      */
     public function create()
     {
-        $category = DB::select ('select * FROM categories ORDER BY title');
+        $category = Category::all();
+        $data = Category::with('children')->get();
+        return view("admin.treatmentadd",["data"=>$data ,"category"=>$category]);
 
-        return view("admin.treatmentadd",["category"=>$category]);
     }
 
     /**
@@ -88,14 +86,9 @@ class TreatmentController extends Controller
      */
     public function edit(Treatment $treatment, $id)
     {
-        $category = DB::select ('select * FROM categories ORDER BY title');
-
-        //$data = DB::select ('select * FROM homes WHERE Id=?',[$id]);
-        $data=DB::select ('select h.*, c.title as category
-              from treatments h, categories c
-              where h.categoryid = c.id AND h.Id=?',[$id]);
-        // $data = DB::select ($sql,[$id]);
-        return view("admin.treatmentedit",compact('data','category'));
+        $data = Treatment::find($id);
+        $datalist = Category::with('children')->get();
+        return view("admin.treatmentedit",["data"=>$data ,"datalist"=>$datalist]);
     }
 
 /**

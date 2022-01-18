@@ -84,12 +84,14 @@
     </div>
 
         <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">categoryid</label>
+        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">Category</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="categoryid" class="placeholder js-states form-control">
                 <option>select..</option>
                 @foreach($category as $ca)
-                <option value="{{$ca->id}}">{{$ca->title}}</option>
+                <option value="{{$ca->id}}">
+                    {{ \App\Http\Controllers\admin\CategoryController::getParentTree($ca,$ca->title) }}</option>
+                    </option>
                 @endforeach
             </select>
         </div>

@@ -36,7 +36,7 @@
                 <p class="half_space">{{$treatment->description}}</p>
                 <p class="half_space">Price:${{$treatment->price}}</p>
                 <a class="red-btn button3" href="{{route('appointment',['id' => $treatment->id])}}" data-text="Appointment">More Detail</a>
-                <a class="red-btn button3" href="{{route('makeappointment',['id' => $treatment->id])}}" data-text="Appointment">Make Appointment</a>
+                <a class="red-btn button3" href="{{route('user_randevu_create')}}" data-text="Appointment">Make Appointment</a>
 
             </div>
             <div class="col-md-5 col-sm-6">

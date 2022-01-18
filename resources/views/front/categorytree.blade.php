@@ -1,9 +1,10 @@
+
 @foreach($children as $sub)
 
-    <ul class="dropdown-menu">
-            @if(count($sub->children))
+    @if(count($sub->children))
+        <ul class="dropdown-menu">
             <li><a href="{{route('categorytreatment',['id' => $sub->id])}}">{{$sub->title}}</a></li>
-        @endif
-    </ul>
-    </li>
+        </ul>
+    @endif
+
 @endforeach

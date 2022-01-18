@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Doctor;
 use App\Models\Faq;
 use App\Models\Image;
 use App\Models\Message;
@@ -18,7 +19,7 @@ class HomeController extends Controller
     public static function categorylist()
     {
 
-        return Category::where('usd_id', '=', 0)->with('children')->get();
+        return  Category::with('children')->get();
     }
  public static function getsetting()
     {
@@ -35,11 +36,17 @@ class HomeController extends Controller
 
  public function index()
     {
-        $setting= Setting::first();
+        $datalistss = Treatment::all();
+        $datalistsss = Treatment::select('id','title','image','price','description')->latest()->take(3)->get();
+        $datalists = Doctor::all();        $setting= Setting::first();
         $slider = Treatment::select('id','title','image','price','slug')->limit(4)->get();
         $data=[
             'setting'=>$setting ,
             'slider'=>$slider,
+            'datalists'=>$datalists,
+            'datalistss'=>$datalistss,
+            'datalistsss'=>$datalistsss,
+
             'page'=>'home',
         ];
         return view("front.home",$data);

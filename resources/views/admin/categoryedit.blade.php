@@ -18,18 +18,18 @@
         </div>
 
 
-<form action="{{url('/')}}/admin/category/update/{{$category[0]->id}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/')}}/admin/category/update/{{$data->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">title</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="text" name="title" value="{{$category[0]->title}}"class="form-control"  placeholder="">
+            <input type="text" name="title" value="{{$data->title}}"class="form-control"  placeholder="{{$data->title}}">
         </div>
     </div>
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">keywords</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="text" name="keywords" value="{{$category[0]->keywords}}" class="form-control"  placeholder="">
+            <input type="text" name="keywords" value="{{$data->keywords}}" class="form-control"  placeholder="{{$data->keywords}}">
         </div>
     </div>
     <div class="form-group row mb-4">
@@ -40,8 +40,8 @@
                     <div class="statbox widget box box-shadow">
 
                         <div class="widget-content widget-content-area">
-                                     <textarea value="{{$category[0]->description}}" id="demo1" name="detail">
-{{$category[0]->description}}
+                                     <textarea value="{{$data->description}}" id="demo1" name="detail">
+{{$data->description}}
                                     </textarea>
 
 
@@ -54,16 +54,12 @@
 
 
         <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">usd_id</label>
+        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">Main id</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="usd_id" class="placeholder js-states form-control">
-                @if($category[0]->usd_id ==0)
-                    <option value="0" selected="selected" >select..</option>
-                @else
-                    <option value="{{$category[0]->usd_id}}" >{{$category[0]->categoryusd}}</option>
-                @endif
-                @foreach($data as $ca)
-                <option value="{{$ca->id}}">{{ \App\Http\Controllers\admin\CategoryController::getParentTree($ca,$ca->title)  }}</option>
+                @foreach($datalist as $ca)
+                    <option value="{{$ca->id}}" @if($ca->id ==$ca->usd_id) selected="selected" @endif >
+                {{ \App\Http\Controllers\admin\CategoryController::getParentTree($ca,$ca->title) }}</option>
                 @endforeach
             </select>
         </div>
@@ -74,7 +70,7 @@
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">status</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
-                <option  >{{$category[0]->status}}</option>
+                <option  >{{$data->status}}</option>
                 <option value="false"> false</option>
                 <option value="true">true</option>
 
@@ -82,14 +78,6 @@
         </div>
     </div>
 
-
-    <div class="form-group row mb-4">
-        <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">image</label>
-        <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="hidden" name="image2" value="{{$category[0]->image}}"  class="form-control">
-        <input type="file" name="image"  class="form-control">
-   </div>
-   </div>
 
     <div class="form-group row">
         <div class="col-sm-10">

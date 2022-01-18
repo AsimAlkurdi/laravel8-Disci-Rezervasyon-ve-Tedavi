@@ -49,24 +49,21 @@
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#fixed-collapse-navbar" aria-expanded="false">
                                 <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" class="img-responsive"></a>
+                            <a class="navbar-brand" href="index.html"><img src="{{url('/')}}/assets/front/images/logo.png" height="120" width="120" alt="logo" class="img-responsive"></a>
                         </div>
 
                         <div id="fixed-collapse-navbar" class="navbar-collapse collapse navbar-right">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{route('home')}}">Home V1</a></li>
+                                <li class=" active">
+                              <a href="{{route('home')}}">Home</a></li>
 
-                                    </ul>
-                                </li>
                                 @include('front.category')
                                 <li><a href="{{route('user_randevu')}}">Appointment</a></li>
                                 <li><a href="{{route('aboutus')}}">About Us</a></li>
                                 <li><a href="{{route('faq')}}">FAQ</a></li>
                                 <li><a href="{{route('contact')}}">Contact Us</a></li>
                                 <li><a href="{{route('references')}}">References</a></li>
+                                @auth
                                 @php
                                     $userRoles = Auth::user()->role->pluck('name');
 
@@ -75,16 +72,16 @@
                                 <li><a href="{{route('admin')}}" target="_blank">Admin Panel</a></li>
                                     @endif
 
-
+                                @endauth
                                 @auth
 
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">{{Auth::user()->name}}</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{route('myprofile')}}">My Account</a> </li>
-                                        <li><a href="gallery4c.html">Gallery Four column</a></li>
-                                        <li><a href="{{ route('admin_logout') }}">Log Out</a></li>
-                                    </ul>
+                                        <li><a href="{{route('user_randevu')}}">My Randevus</a> </li>
+                                        <li><a href="{{route('myreviews')}}">My comments</a></li>
+                                        <li><a href="{{route('admin_logout')}}">log out</a></li>  </ul>
                                 </li>
                                 @endauth
                                 @guest
@@ -99,9 +96,6 @@
         </div>
     </div>
 </header>
-@section('footer.js')
-    @livewireScripts
-@endsection
 
 <!--Slider-->
 @yield('slider')

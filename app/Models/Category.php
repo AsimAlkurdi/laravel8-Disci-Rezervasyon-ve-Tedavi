@@ -14,7 +14,7 @@ class Category extends Model
     ];
 
 
-    public function treatments()
+    public function treatment()
     {
         return $this->hasMany(Treatment::class);
     }

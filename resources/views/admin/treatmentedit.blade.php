@@ -18,18 +18,18 @@
         </div>
 
 
-<form action="{{url('/')}}/admin/treatments/update/{{$data[0]->id}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/')}}/admin/treatments/update/{{$data->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">title</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="text" name="title" value="{{$data[0]->title}}"class="form-control"  placeholder="">
+            <input type="text" name="title" value="{{$data->title}}"class="form-control"  placeholder="{{$data->title}}">
         </div>
     </div>
     <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label"> keywords</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="text" name="keywords" value="{{$data[0]->keywords}}" class="form-control"  placeholder="">
+            <input type="text" name="keywords" value="{{$data->keywords}}" class="form-control"  placeholder="{{$data->keywords}}">
         </div>
     </div>
     <div class="form-group row mb-4">
@@ -41,8 +41,8 @@
 
                         <div class="widget-content widget-content-area">
 
-                                <textarea value="{{$data[0]->description}}" id="demo2" name="description">
-{{$data[0]->description}}
+                                <textarea value="{{$data->description}}" id="demo2" name="description">
+{{$data->description}}
                                 </textarea>
 
 
@@ -62,8 +62,8 @@
                     <div class="statbox widget box box-shadow">
 
                         <div class="widget-content widget-content-area">
-                                    <textarea value="{{$data[0]->detail}}" id="demo1" name="detail">
-{{$data[0]->detail}}
+                                    <textarea value="{{$data->detail}}" id="demo1" name="detail">
+{{$data->detail}}
                                     </textarea>
 
 
@@ -78,17 +78,17 @@
         <div class="form-group row mb-4">
         <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">price</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="number" value="{{$data[0]->price}}" name="price" class="form-control"  placeholder="">
+            <input type="number" value="{{$data->price}}" name="price" class="form-control"  placeholder="{{$data->price}}">
         </div>
     </div>
 
-        <div class="form-group row mb-4">
-        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">categoryid</label>
+    <div class="form-group row mb-4">
+        <label  class="col-xl-2 col-sm-3 col-sm-2 col-form-label">Category</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <select   name="categoryid" class="placeholder js-states form-control">
-                <option value="{{$data[0]->categoryid}}" >{{$data[0]->category}}</option>
-                @foreach($category as $ca)
-                <option value="{{$ca->id}}">{{$ca->title}}</option>
+            <select   name="usd_id" class="placeholder js-states form-control">
+                @foreach($datalist as $ca)
+                    <option value="{{$ca->id}}" @if($ca->id ==$ca->usd_id) selected="selected" @endif >
+                        {{ \App\Http\Controllers\admin\CategoryController::getParentTree($ca,$ca->title) }}</option>
                 @endforeach
             </select>
         </div>
@@ -99,7 +99,7 @@
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">status</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
             <select   name="status" class="placeholder js-states form-control">
-                <option  >{{$data[0]->status}}</option>
+                <option  >{{$data->status}}</option>
                 <option value="false"> false</option>
                 <option value="true">true</option>
 
@@ -110,8 +110,7 @@
     <div class="form-group row mb-4">
         <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">image</label>
         <div class="col-xl-10 col-lg-9 col-sm-10">
-            <input type="hidden" name="image2" value="{{$data[0]->image}}"  class="form-control">
-        <input type="file" name="image"  class="form-control">
+        <input type="file" name="image" value="{{$data->image}}"  class="form-control">
    </div>
    </div>
 

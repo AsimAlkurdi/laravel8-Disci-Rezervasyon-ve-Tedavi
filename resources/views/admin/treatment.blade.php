@@ -47,7 +47,8 @@
                              @foreach($treatment as $treatment)
                             <tr>
                                 <td>{{$treatment->id}}</td>
-                                <td>{{$treatment->category}}</td>
+                                <td>{{ \App\Http\Controllers\admin\CategoryController::getParentTree($treatment->category ,$treatment->category->title) }}</td>
+
                                 <td>{{$treatment->title}}</td>
 
                                 <td>

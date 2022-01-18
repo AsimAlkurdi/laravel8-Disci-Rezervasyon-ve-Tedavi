@@ -28,9 +28,7 @@
                     <li class="active">
                         <a href="{{url('/')}}/admin"> dashborad </a>
                     </li>
-                    <li>
-                        <a href="index2.html"> Sales </a>
-                    </li>
+
                 </ul>
             </li>
 

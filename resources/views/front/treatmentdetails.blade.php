@@ -53,7 +53,7 @@ $countreview = \App\Http\Controllers\HomeController::countreview($data->id);
                         <p>{{$data->detail}}</p>
                           <div class="clearfix">
                             <ul class="comments pull-left">
-                                <li>      <a class="red-btn button3" href="{{route('makeappointment',['id' => $data->id])}}" data-text="Appointment">Make Appointment</a>
+                                <li>      <a class="red-btn button3" href="{{route('user_randevu_create')}}" data-text="Appointment">Make Appointment</a>
                                 </li>
                             </ul>
                         </div>

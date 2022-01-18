@@ -7,7 +7,7 @@
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">Our treatments</a>
     <ul class="dropdown-menu">
         @foreach($parantCategoies as $rs)
-        <li><a href="{{route('categorytreatment',['id' => $rs->id])}}">{{$rs->title}}</a></li>
+        <li><a href="{{route('categorytreatment',['id' => $rs->id])}}">{{ \App\Http\Controllers\admin\CategoryController::getParentTree($rs ,$rs->title) }}</a></li>
 
         @endforeach
     </ul>

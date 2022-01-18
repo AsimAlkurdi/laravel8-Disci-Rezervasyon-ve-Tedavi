@@ -36,12 +36,8 @@ class CategoryController extends Controller
     public function index()
     {
         $datalist= Category::with('children')->get();
-        $category= DB::select('select c.*, b.title as categoryusd
-              from categories c left join categories b
-               on c.usd_id = b.id
-              ORDER BY c.title');
 
-        return view("admin.category",["category"=>$category],["datalist"=>$datalist]);
+        return view("admin.category",["datalist"=>$datalist]);
     }
 
     /**
@@ -50,9 +46,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {    $data = Category::all();
         $category = Category::with('children')->get();
-        return view("admin.categoryadd",["category"=>$category]);
+        return view("admin.categoryadd",["data"=>$data ,"category"=>$category]);
 
     }
 
@@ -65,20 +61,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        if($request->hasfile('image'))
-        {
-            $file = $request->file('image');
-            $name=time().$file->getClientOriginalName();
-            $file->move(public_path().'/userfile/', $name);
-        }
+
         DB::table('categories')->insert([
             [ 'title' => $request->get('title'),
                 'keywords' => $request->get('keywords'),
                 'description' => $request->get('description'),
                 'usd_id' => $request->get('usd_id'),
                 'status' => $request->get('status'),
-                'image' => $name,
-
             ]
         ]);
 
@@ -106,13 +95,10 @@ class CategoryController extends Controller
     public function edit(Category $category,$id)
     {
 
-        $category = DB::select ('select c.*, b.title as categoryusd
-              from categories c left join categories b
-               on c.usd_id = b.id
-              where c.Id=?',[$id]);
-        $data= Category::with('children')->get();
+        $data = Category::find($id);
+        $datalist= Category::with('children')->get();
+        return view("admin.categoryedit",["data"=>$data ,"datalist"=>$datalist ]);
 
-        return view("admin.categoryedit",compact('data','category'));
 
     }
     /**
@@ -124,13 +110,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category, $id)
     {
-        if($request->hasfile('image'))
-    {
-        $file = $request->file('image');
-        $name=time().$file->getClientOriginalName();
-        $file->move(public_path().'/userfile/', $name);
-    }
-
 
         DB::table('categories')
             ->where('id',$id)
@@ -140,7 +119,7 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'usd_id' => $request->usd_id,
                 'status' => $request->status,
-                'image' => $name,
+
 
             ]);
 

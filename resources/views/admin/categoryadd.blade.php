@@ -80,15 +80,6 @@
     </div>
 
 
-
-    <div class="form-group row mb-4">
-        <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label">image </label>
-        <div class="col-xl-10 col-lg-9 col-sm-10">
-
-        <input type="file" name="image" class="form-control">
-   </div>
-   </div>
-
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary mt-3">save</button>

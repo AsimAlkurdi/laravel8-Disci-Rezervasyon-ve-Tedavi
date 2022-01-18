@@ -5,21 +5,15 @@
 <section class="bg_blue padding-half">
     <div class="container">
         <div class="row">
+            @foreach($datalistsss as $treatment)
             <div class="col-md-4 col-sm-4 white_content">
-                <i class="icon-patient-bed"></i>
-                <h3><a href="services.html">Operation Theater</a></h3>
-                <p> you need a doctor for to consectetuer Lorem ipsum dolor, consectetur adipiscing onsectetur Graphic Power Ut eros.</p>
+                <i class="icon-patient-bed"> </i>
+                <h3><a href="{{route('categorytreatment',['id' => $treatment->id])}}">{{$treatment->title}}</a></h3>
+                <p> {{$treatment->description}}</p>
+
             </div>
-            <div class="col-md-4 col-sm-4 white_content">
-                <i class="icon-mortar-pestle"></i>
-                <h3><a href="services.html">Operation Theater</a></h3>
-                <p> you need a doctor for to consectetuer Lorem ipsum dolor, consectetur adipiscing onsectetur Graphic Power Ut eros.</p>
-            </div>
-            <div class="col-md-4 col-sm-4 white_content">
-                <i class="icon-ambulanc"></i>
-                <h3><a href="services.html">Operation Theater</a></h3>
-                <p> you need a doctor for to consectetuer Lorem ipsum dolor, consectetur adipiscing onsectetur Graphic Power Ut eros.</p>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>
@@ -34,46 +28,18 @@
                 <hr class="heading_space">
                 <div class="slider_wrap">
                     <div id="service-slider" class="owl-carousel">
+                        @foreach($datalistss as $treatment)
                         <div class="item">
                             <div class="item_inner">
                                 <div class="image">
-                                    <img src="images/medical-surgery.jpg" alt="Services Image">
-                                    <a class="overlay" href="services.html"></a>
+                                    <img src="{{url('/')}}/userfile/{{$treatment->image}}" alt="Services Image">
+                                    <a class="overlay" href="{{route('categorytreatment',['id' => $treatment->id])}}"></a>
                                 </div>
-                                <h3><a href="services.html">Medical Surgery</a></h3>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore nulla facilisis.</p>
+                                <h3><a href="{{route('user_randevu')}}">{{$treatment->title}}</a></h3>
+                                <p>{{$treatment->description}}</p>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="item_inner">
-                                <div class="image">
-                                    <img src="images/baby-birth.jpg" alt="Services Image">
-                                    <a class="overlay" href="services.html"></a>
-                                </div>
-                                <h3><a href="services.html">Baby Birth</a></h3>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore nulla facilisis.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item_inner">
-                                <div class="image">
-                                    <img src="images/medical-surgery.jpg" alt="Services Image">
-                                    <a class="overlay" href="services.html"></a>
-                                </div>
-                                <h3><a href="services.html">Medical Surgery</a></h3>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore nulla facilisis.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item_inner">
-                                <div class="image">
-                                    <img src="images/baby-birth.jpg" alt="Services Image">
-                                    <a class="overlay" href="services.html"></a>
-                                </div>
-                                <h3><a href="services.html">Baby Birth</a></h3>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore nulla facilisis.</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -111,70 +77,22 @@
             <div class="col-md-12">
                 <div class="specialists_wrap_slider">
                     <div id="specialist-slider" class="owl-carousel">
+                        @foreach($datalists as $doc)
+
                         <div class="item">
                             <div class="specialist_info">
-                                <h2>01</h2>
-                                <h3>Dr. Andrew Berton</h3>
-                                <small>Outpatient Surgery</small>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-                                <ul class="social_icon">
-                                    <li class="black"><a href="#" class="facebook"><i class="icon-facebook5"></i></a></li>
-                                    <li class="black"><a href="#" class="twitter"><i class="icon-twitter4"></i></a></li>
-                                    <li class="black"><a href="#" class="google"><i class="icon-google"></i></a></li>
-                                </ul>
+                                <h2>{{$doc->id}}</h2>
+                                <h3>{{$doc->name}}</h3>
+                                <small>{{$doc->specialty}}</small>
+                                <p>{{$doc->email}}</p>
+                                <p>{{$doc->phone}}</p>
+
                             </div>
                             <div class="specialist_photo">
-                                <img src="images/specialist1.jpg" alt="Docotor">
+                                <img src="{{url('/')}}/userfile/{{$doc->image}}" height="300" width="200" alt="Docotor">
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="specialist_info">
-                                <h2>02</h2>
-                                <h3>Dr. Andrew Berton</h3>
-                                <small>Outpatient Surgery</small>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-                                <ul class="social_icon">
-                                    <li class="black"><a href="#" class="facebook"><i class="icon-facebook5"></i></a></li>
-                                    <li class="black"><a href="#" class="twitter"><i class="icon-twitter4"></i></a></li>
-                                    <li class="black"><a href="#" class="google"><i class="icon-google"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="specialist_photo">
-                                <img src="images/specialist2.jpg" alt="Docotor">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="specialist_info">
-                                <h2>03</h2>
-                                <h3>Dr. Andrew Berton</h3>
-                                <small>Outpatient Surgery</small>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-                                <ul class="social_icon">
-                                    <li class="black"><a href="#" class="facebook"><i class="icon-facebook5"></i></a></li>
-                                    <li class="black"><a href="#" class="twitter"><i class="icon-twitter4"></i></a></li>
-                                    <li class="black"><a href="#" class="google"><i class="icon-google"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="specialist_photo">
-                                <img src="images/specialist1.jpg" alt="Docotor">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="specialist_info">
-                                <h2>04</h2>
-                                <h3>Dr. Andrew Berton</h3>
-                                <small>Outpatient Surgery</small>
-                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-                                <ul class="social_icon">
-                                    <li class="black"><a href="#" class="facebook"><i class="icon-facebook5"></i></a></li>
-                                    <li class="black"><a href="#" class="twitter"><i class="icon-twitter4"></i></a></li>
-                                    <li class="black"><a href="#" class="google"><i class="icon-google"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="specialist_photo">
-                                <img src="images/specialist2.jpg" alt="Docotor">
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
