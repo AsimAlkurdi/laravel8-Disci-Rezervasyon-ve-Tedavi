@@ -98,6 +98,7 @@
                 <option value="accepted">accepted</option>
                 <option value="completed"> completed</option>
                 <option value="processing">processing</option>
+                <option value="canceled">canceled</option>
 
             </select>
         </div>

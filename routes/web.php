@@ -73,11 +73,13 @@ Route::post('doctors/update/{id}', [App\Http\Controllers\admin\DoctorController:
 //randevu işlemleri
 Route::get('randevu', [App\Http\Controllers\admin\RandevuController::class, 'index'])->name('admin_randevu');
 Route::get('randevu/edit/{id}', [App\Http\Controllers\admin\RandevuController::class, 'edit']);
+Route::get('randevu/list/{status}', [App\Http\Controllers\admin\RandevuController::class, 'list'])->name('admin_randevu_list');
 Route::get('randevu/destroy/{id}', [App\Http\Controllers\admin\RandevuController::class, 'destroy']);
 Route::get('randevu/show/{id}', [App\Http\Controllers\admin\RandevuController::class, 'show']);
 Route::post('randevu/create', [App\Http\Controllers\admin\RandevuController::class, 'store']);
 Route::get('randevu/add', [App\Http\Controllers\admin\RandevuController::class, 'create']);
 Route::post('randevu/update/{id}', [App\Http\Controllers\admin\RandevuController::class, 'update']);
+Route::post('randevu/updateprocess/{id}', [App\Http\Controllers\admin\RandevuController::class, 'updateprocess']);
 
 
 
@@ -144,6 +146,8 @@ route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
     Route::post('randevu/create', [App\Http\Controllers\RandevuController::class, 'store'])->name('user_randevu_store');
     Route::get('randevu/add', [App\Http\Controllers\RandevuController::class, 'create'])->name('user_randevu_create');
     Route::post('randevu/update/{id}', [App\Http\Controllers\RandevuController::class, 'update'])->name('user_randevu_update');
+    Route::get('randevu/list/{status}', [App\Http\Controllers\RandevuController::class, 'list'])->name('user_randevu_list');
+
 
 });
 

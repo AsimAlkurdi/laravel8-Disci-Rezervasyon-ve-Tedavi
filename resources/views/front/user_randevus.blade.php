@@ -34,10 +34,25 @@
                 <div class="col-md-3 col-sm-3">
 
                       <ul class="welcome_list">
-                        <li><a href="{{route('myprofile')}}">My Account</a> </li>
-                        <li><a href="{{route('user_randevu')}}">My Randevus</a> </li>
-                        <li><a href="{{route('myreviews')}}">My comments</a></li>
-                        <li><a href="{{route('admin_logout')}}">log out</a></li>
+                          <li>
+                              <a href="{{route('user_randevu')}}"> All Randevus </a>
+                          </li>
+                          <li>
+                              <a href="{{route('user_randevu_list',['status'=>'expecting'])}}"> New  </a>
+                          </li>
+                          <li>
+                              <a href="{{route('user_randevu_list',['status'=>'accepted'])}}"> accepted </a>
+                          </li>
+                          <li>
+                              <a href="{{route('user_randevu_list',['status'=>'completed'])}}"> completed </a>
+                          </li>
+                          <li>
+                              <a href="{{route('user_randevu_list',['status'=>'processing'])}}"> processing </a>
+                          </li>
+
+                          <li>
+                              <a href="{{route('admin_randevu_list',['status'=>'canceled'])}}"> canceled </a>
+                          </li>
                     </ul>
                 </div>
                 <div class="col-md-9 col-sm-9">

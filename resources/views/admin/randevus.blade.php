@@ -41,12 +41,10 @@
                                 <th>Treatment</th>
                                 <th>patient  Name</th>
                                 <th>Dcotor Name</th>
-                                <th>Note</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>status</th>
-                                <th>edit</th>
-                                <th>delete</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,16 +57,13 @@
                                 <td>{{$ca->doctor->name}}</td>
 
 
-                                <td>{!! $ca->note !!}</td>
                                 <td>{{$ca->Date}}</td>
                                 <td>{{$ca->time}}</td>
                                 <td>{{$ca->status}}</td>
 
-                                <td><a href="{{url('/')}}/admin/randevu/edit/{{$ca->id}}" class="btn btn-outline-secondary mb-2">edit</a>
+                                <td><a href="{{url('/')}}/admin/randevu/edit/{{$ca->id}}" class="btn btn-outline-secondary mb-2">Detail</a>
+                                    <a href="{{url('/')}}/admin/randevu/show/{{$ca->id}}" class="btn btn-outline-primary mb-2">Process</a>
 
-                                </td>
-                                <td><a href="{{url('/')}}/admin/randevu/destroy/{{$ca->id}}" class="btn btn-outline-danger  mb-2" onclick="return confirm('are you sure')">delete</a>
-                                </td>
 
                             </tr>
 

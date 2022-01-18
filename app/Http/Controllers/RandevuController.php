@@ -23,6 +23,11 @@ class RandevuController extends Controller
         return view('front.user_randevus',['datalist'=>$datalist ]);
     }
 
+    public function list($status)
+    {
+        $datalist = Randevu::where('usersid','=',Auth::user()->id)->where('status',$status)->get();
+        return view('front.user_randevus',['datalist'=>$datalist ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
