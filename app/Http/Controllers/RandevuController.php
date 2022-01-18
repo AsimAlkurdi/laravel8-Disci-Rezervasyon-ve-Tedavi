@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Process;
 use App\Models\Randevu;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
@@ -53,9 +54,15 @@ class RandevuController extends Controller
         $data->phone = $request->input('phone');
         $data->doctorid =  $request->input('doctorid');
         $data->message = $request->input('message');
-
-
         $data->save();
+
+        $dataprocss = new Process();
+        $dataprocss->treatmentid = $data->treatmentid;
+        $dataprocss->usersid = Auth::id();
+        $dataprocss->randevuid = $data->id;
+        $dataprocss->price = $data->treatment->price;
+        $dataprocss->doctorid =  $data->doctorid;
+        $dataprocss->save();
 
       return redirect()->route('user_randevu')->with('success', 'ADDED successfully');
     }
@@ -66,9 +73,12 @@ class RandevuController extends Controller
      * @param  \App\Models\Randevu  $randevu
      * @return \Illuminate\Http\Response
      */
-    public function show(Randevu $randevu)
+    public function show(Randevu $randevu ,$id)
     {
-        //
+        $datalist = Process::where('usersid','=',Auth::user()->id)->where('randevuid','=',$id)->get();
+        return view('front.user_randevus_details',['datalist'=>$datalist ]);
+
+
     }
 
     /**

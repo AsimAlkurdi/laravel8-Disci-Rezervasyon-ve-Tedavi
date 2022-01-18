@@ -48,13 +48,14 @@
                     <table id="example1" class="table table-bordered table-striped">
                    <thead>
                    <tr>
-                       <th>id</th>
                        <th>Treatment</th>
-                       <th>Patient Name</th>
                        <th>Dcotor Name</th>
-                       <th>Created At</th>
+                       <th>Date</th>
+                       <th>Time</th>
+                       <th>Price</th>
+                       <th>payment</th>
                        <th>status</th>
-                       <th>Details</th>
+                       <th>Note</th>
 
                    </tr>
                    </thead>
@@ -67,16 +68,16 @@
                    @endif
                    @foreach($datalist as $ca)
                        <tr>
-                           <td>{{$ca->id}}</td>
                            <td><a href="{{route('appointment',['id' => $ca->id])}}">{{$ca->treatment->title}}</a></td>
-                           <td>{{$ca->name}}</td>
                            <td>{{$ca->doctor->name}}</td>
-                           <td>{{$ca->created_at}}</td>
+                           <td>{{$ca->randevu->Date}}</td>
+                           <td>{{$ca->randevu->time}}</td>
+                           <td>{{$ca->treatment->price}}</td>
+                           <td>{{$ca->payment}}</td>
+
                            <td>{{$ca->status}}</td>
+                           <td>{{$ca->note}}</td>
 
-
-
-                           <td><a href="{{route('user_randevu_show',['id' => $ca->id])}}" class="btn btn-primary  mb-2">Show</a>
 
 
                        </tr>

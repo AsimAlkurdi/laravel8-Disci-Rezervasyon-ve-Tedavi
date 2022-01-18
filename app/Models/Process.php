@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Randevu extends Model
+class Process extends Model
 {
     use HasFactory;
 
@@ -22,10 +22,8 @@ class Randevu extends Model
     {
         return $this->belongsTo(Doctor::class, 'doctorid');
     }
-
-    public function proces()
+      public function randevu()
     {
-        return $this->hasMany(Process::class);
+        return $this->belongsTo(Randevu::class, 'randevuid');
     }
-
 }

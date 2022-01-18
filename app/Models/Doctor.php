@@ -17,4 +17,8 @@ class Doctor extends Model
     {
         return $this->hasMany(Randevu::class);
     }
+    public function proces()
+    {
+        return $this->hasMany(Process::class);
+    }
 }

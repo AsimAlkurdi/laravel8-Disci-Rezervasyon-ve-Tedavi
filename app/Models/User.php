@@ -72,4 +72,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Randevu::class);
     }
+    public function proces()
+    {
+        return $this->hasMany(Process::class);
+    }
 }
