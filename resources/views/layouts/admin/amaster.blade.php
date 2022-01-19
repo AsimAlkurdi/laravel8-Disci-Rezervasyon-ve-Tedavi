@@ -33,6 +33,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="{{url('/')}}/assets/admin/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="{{url('/')}}/assets/admin/assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 </head>
 <body class="alt-menu sidebar-noneoverflow">
 
@@ -144,5 +148,9 @@
 
 <!-- include summernote css/js -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<script src="{{url('/')}}/assets/admin/plugins/apex/apexcharts.min.js"></script>
+<script src="{{url('/')}}/assets/admin/assets/js/dashboard/dash_2.js"></script>
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

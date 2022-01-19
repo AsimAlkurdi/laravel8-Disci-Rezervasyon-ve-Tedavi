@@ -38,7 +38,8 @@ class HomeController extends Controller
     {
         $datalistss = Treatment::all();
         $datalistsss = Treatment::select('id','title','image','price','description')->latest()->take(3)->get();
-        $datalists = Doctor::all();        $setting= Setting::first();
+        $datalists = Doctor::all();
+        $setting= Setting::first();
         $slider = Treatment::select('id','title','image','price','slug')->limit(4)->get();
         $data=[
             'setting'=>$setting ,

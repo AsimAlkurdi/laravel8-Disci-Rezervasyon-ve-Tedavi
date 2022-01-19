@@ -150,7 +150,7 @@ route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(fu
 });
 
 route::middleware('auth')->prefix('user')->namespace('user')->group(function (){
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'index'])->name('userprofile');
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'index'])->name('show');
 
 
     //randevu işlemleri

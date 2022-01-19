@@ -12,12 +12,5 @@ class HomeController extends Controller
     {
         return view("front.home");
     }
-    public function aboutus()
-    {
-        $setting= Setting::first();
 
-        return view('front.aboutus',['setting'=>$setting]);
-
-
-    }
 }
